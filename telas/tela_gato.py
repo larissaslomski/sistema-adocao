@@ -1,0 +1,2 @@
+class TelaGato():
+    pass
