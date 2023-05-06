@@ -2,7 +2,7 @@ from ..entidades.adotante import Adotante
 from ..telas.tela_adotante import TelaAdotante
 
 
-class ControladorAdotante:
+class ControladorAdotantes:
     def __init__(self, controlador_sistema):
         self.__adotantes = []
         self.__tela_adotante = TelaAdotante()
