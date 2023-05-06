@@ -2,8 +2,8 @@ from ..entidades.doador import Doador
 from ..telas.tela_doador import TelaDoador
 
 
-class ControladorDoador:
-    def __init__(self):
+class ControladorDoadores():
+    def __init__(self, controlador_sistema):
         self.__doadores = []
         self.__tela_doador = TelaDoador()
         self.__controlador_sistema = controlador_sistema
@@ -30,7 +30,8 @@ class ControladorDoador:
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_doador, 2: self.alterar_doador, 3: self.listar_doadores, 4: self.excluir_doador, 0: self.retornar}
+        lista_opcoes = {1: self.incluir_doador, 2: self.alterar_doador,
+                        3: self.listar_doadores, 4: self.excluir_doador, 0: self.retornar}
 
         continua = True
         while continua:

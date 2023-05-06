@@ -1,0 +1,2 @@
+class TelaRegistroDoacao():
+    pass

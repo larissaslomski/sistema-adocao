@@ -3,7 +3,7 @@ from ..telas.tela_adotante import TelaAdotante
 
 
 class ControladorAdotante:
-    def __init__(self):
+    def __init__(self, controlador_sistema):
         self.__adotantes = []
         self.__tela_adotante = TelaAdotante()
         self.__controlador_sistema = controlador_sistema
@@ -14,7 +14,7 @@ class ControladorAdotante:
                 return adotante
         return None
 
-    def incluir(self):
+    def incluir_adotante(self):
         dados_adotante = self.__tela_adotante.pega_dados_adotante()
         cpf_valid = self.pega_adotante_por_cpf(dados_adotante['cpf'])
         if cpf_valid is None:
@@ -69,7 +69,8 @@ class ControladorAdotante:
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_adotante, 2: self.alterar_adotante, 3: self.listar_adotantes, 4: self.excluir_adotante, 0: self.retornar}
+        lista_opcoes = {1: self.incluir_adotante, 2: self.alterar_adotante,
+                        3: self.listar_adotantes, 4: self.excluir_adotante, 0: self.retornar}
 
         continua = True
         while continua:

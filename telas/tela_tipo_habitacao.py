@@ -1,0 +1,2 @@
+class TelaTipoHabitacao():
+    pass
