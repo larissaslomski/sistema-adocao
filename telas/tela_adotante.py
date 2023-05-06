@@ -1,0 +1,2 @@
+class TelaAdotante():
+    pass
