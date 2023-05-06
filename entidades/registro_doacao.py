@@ -15,14 +15,14 @@ class RegistroDoacao:
         if isinstance(motivo, str):
             self.__motivo = motivo
     @property
-    def codigo_regstro(self):
+    def codigo_registro(self):
         return self.__codigo_registro
 
     @property
     def motivo(self):
         return self.__motivo
 
-    @codigo_regstro.setter
+    @codigo_registro.setter
     def codigo_regstro(self, codigo_regstro: int):
         if isinstance(codigo_regstro, int):
             self.__codigo_regstro = codigo_regstro
