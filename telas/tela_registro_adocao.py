@@ -1,4 +1,4 @@
-class TelaAdotante():
+class TelaRegistroAdocao():
     def tela_opcoes(self):
         print("-------REGISTRO DE ADOÇÃO--------")
         print("Escolha a opcao")

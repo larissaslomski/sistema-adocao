@@ -1,5 +1,5 @@
-from ..entidades.doador import Doador
-from ..telas.tela_doador import TelaDoador
+from entidades.doador import Doador
+from telas.tela_doador import TelaDoador
 
 
 class ControladorDoadores():

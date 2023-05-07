@@ -1,5 +1,5 @@
-from ..entidades.adotante import Adotante
-from ..telas.tela_adotante import TelaAdotante
+from entidades.adotante import Adotante
+from telas.tela_adotante import TelaAdotante
 
 
 class ControladorAdotantes:
@@ -8,7 +8,7 @@ class ControladorAdotantes:
         self.__tela_adotante = TelaAdotante()
         self.__controlador_sistema = controlador_sistema
 
-    def pegar_adotante_por_cpf(self, cpf: int):
+    def pega_adotante_por_cpf(self, cpf: int):
         for adotante in self.__adotantes:
             if (adotante.cpf == cpf):
                 return adotante
@@ -16,14 +16,20 @@ class ControladorAdotantes:
 
     def incluir_adotante(self):
         dados_adotante = self.__tela_adotante.pega_dados_adotante()
-        cpf_valid = self.pega_adotante_por_cpf(dados_adotante['cpf'])
-        if cpf_valid is None:
-            adotante = Adotante(
-                dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], dados_adotante["tipo_habitacao"])
-            self.__adotantes.append(adotante)
+        cpf_valido = self.pega_adotante_por_cpf(dados_adotante['cpf'])
+        if cpf_valido is None:
+            tem_outros_animais = dados_adotante["tem_outros_animais"]
+            if tem_outros_animais.upper() == "S" or tem_outros_animais.upper() == "N":
+                adotante = Adotante(
+                dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], dados_adotante["tem_outros_animais"])
+                self.__adotantes.append(adotante)
+                self.__tela_adotante.mostra_mensagem("Adotante cadastrado com sucesso no sistema")
+            else:
+                self.__tela_adotante.mostra_mensagem("ERRO: informações inválidas, tente novamente")
+                self.__tela_adotante.pega_dados_adotante()
         else:
-            self.__tela_adotante.mostra_mensagem(
-                "ERRO: O Adotante ja esta cadastrado no Sistema.")
+            self.__tela_adotante.mostra_mensagem("ERRO: o Adotante ja esta cadastrado no Sistema.")
+
 
     def listar_adotantes(self):
         tam_lista_adotantes = len(self.__adotantes)

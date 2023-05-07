@@ -19,7 +19,7 @@ class TelaAdotante():
         endereco = input("Endereço: ")
         tem_outros_animais = input("Possui outros animais? S/N")
         return {"cpf": cpf, "nome": nome, "nascimento": nascimento, "endereco": endereco,
-                "tem outros animais": tem_outros_animais}
+                "tem_outros_animais": tem_outros_animais}
 
     def mostra_adotante(self, dados_adotante):
         print("NOME DO ADOTANTE: ", dados_adotante["cpf"])
