@@ -6,8 +6,6 @@ from .controlador_gatos import ControladorGatos
 from .controlador_historicos_vacinacao import ControladorHistoricos
 from .controlador_registros_adocao import ControladorRegistrosAdocao
 from .controlador_registros_doacao import ControladorRegistrosDoacao
-from .controlador_tipos_habitacao import ControladorTipoHabitacao
-from .controlador_vacinas import ControladorVacinas
 
 
 class ControladorSistema():
@@ -15,12 +13,11 @@ class ControladorSistema():
         self.__tela_sistema = TelaSistema()
         self.__controlador_adotantes = ControladorAdotantes(self)
         self.__controlador_doadores = ControladorDoadores(self)
-        self.__controlador_tipo_habitacao = ControladorTipoHabitacao(self)
-        # self.__controlador_cachorros = ControladorCachorros(self)
-        # self.__controlador_gatos = ControladorGatos(self)
-        # self.__controlador_historicos_vacinacao = ControladorHistoricos(self)
-        # self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
-        # self.__controlador_registros_doacao = ControladorRegistrosDoacao(self)
+        self.__controlador_cachorros = ControladorCachorros(self)
+        self.__controlador_gatos = ControladorGatos(self)
+        self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
+        self.__controlador_registros_doacao = ControladorRegistrosDoacao(self)
+        self.__controlador_historicos_vacinacao = ControladorHistoricos(self)
 
     @property
     def controlador_adotantes(self):
@@ -82,7 +79,8 @@ class ControladorSistema():
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes()
             while opcao_escolhida not in (1, 2, 3, 4, 5, 6, 7, 0):
-                self.__tela_sistema.mostra_mensagem("Opção inválida, tente novamente.")
+                self.__tela_sistema.mostra_mensagem(
+                    "ERRO: Opção inválida, tente novamente.")
                 opcao_escolhida = self.__tela_sistema.tela_opcoes()
             funcao_escolhida = lista_opcoes[opcao_escolhida]
             funcao_escolhida()

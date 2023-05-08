@@ -1,24 +1,26 @@
-
 class TipoHabitacao:
-    def __init__(self, tipo_habitacao: str, tamanho_habitacao: str):
-        if isinstance(tipo_habitacao, str):
-            self.__tipo_habitacao = tipo_habitacao
-        if isinstance(tamanho_habitacao, str):
-            self.__tamanho_habitacao = tamanho_habitacao
+    def __init__(self, tipo_hab: str, tamanho_hab: str):
+        if isinstance(tipo_hab, str):
+            self.__tipo_hab = tipo_hab
+        if isinstance(tamanho_hab, str):
+            self.__tamanho_hab = tamanho_hab
 
 
 @property
-def tipo_habitacao(self):
-    return self.__tipo_habitacao
+def tipo_hab(self):
+    return self.__tipo_hab
+
 
 @property
-def tamanho_habitacao(self):
-    return self.__tamanho_habitacao
+def tamanho_hab(self):
+    return self.__tamanho_hab
 
-@tipo_habitacao.setter
-def tipo_habitacao(self, tipo_habitacao):
-    self.__tipo_habitacao = tipo_habitacao
 
-@tamanho_habitacao.setter
-def tamanho_habitacao(self, tamanho_habitacao):
-    self.__tamanho_habitacao = tamanho_habitacao
+@tipo_hab.setter
+def tipo_hab(self, tipo_hab):
+    self.__tipo_hab = tipo_hab
+
+
+@tamanho_hab.setter
+def tamanho_hab(self, tamanho_hab):
+    self.__tamanho_hab = tamanho_hab

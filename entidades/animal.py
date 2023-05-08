@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 from entidades.historico_vacinacao import HistoricoVacinacao
 
+
 class Animal(ABC):
     @abstractmethod
-    def __init__(self, numero_chip: int, nome: str, raca: str, historico_vacinacao: HistoricoVacinacao):
-        if isinstance(numero_chip, int):
-            self.__numero_chip = numero_chip
+    def __init__(self, num_chip: int, nome: str, raca: str, historico_vacinacao: HistoricoVacinacao):
+        if isinstance(num_chip, int):
+            self.__num_chip = num_chip
         if isinstance(nome, str):
             self.__nome = nome
         if isinstance(raca, str):
@@ -14,8 +15,8 @@ class Animal(ABC):
             self.__historico_vacinacao = historico_vacinacao
 
     @property
-    def numero_chip(self):
-        return self.__numero_chip
+    def num_chip(self):
+        return self.__num_chip
 
     @property
     def nome(self):
@@ -29,10 +30,10 @@ class Animal(ABC):
     def historico_vacinacao(self):
         return self.__historico_vacinacao
 
-    @numero_chip.setter
-    def numero_chip(self, numero_chip):
-        if isinstance(numero_chip, int):
-            self.__numero_chip = numero_chip
+    @num_chip.setter
+    def num_chip(self, num_chip):
+        if isinstance(num_chip, int):
+            self.__num_chip = num_chip
 
     @nome.setter
     def nome(self, nome):
