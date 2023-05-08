@@ -15,9 +15,9 @@ class ControladorSistema():
         self.__controlador_doadores = ControladorDoadores(self)
         self.__controlador_cachorros = ControladorCachorros(self)
         self.__controlador_gatos = ControladorGatos(self)
-        self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
-        self.__controlador_registros_doacao = ControladorRegistrosDoacao(self)
-        self.__controlador_historicos_vacinacao = ControladorHistoricos(self)
+        # self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
+        # self.__controlador_registros_doacao = ControladorRegistrosDoacao(self)
+        # self.__controlador_historicos_vacinacao = ControladorHistoricos(self)
 
     @property
     def controlador_adotantes(self):

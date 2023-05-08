@@ -13,11 +13,10 @@ class TelaCachorro():
 
     def pega_dados_cachorro(self):
         print("-------- DADOS CACHORRO ----------")
-        numero_chip = input("numero do chip: ")
         nome = input("Nome: ")
         raca = input("Raça: ")
         tamanho = input("Endereço: ")
-        return {"numero chip": numero_chip, "nome": nome, "raca": raca, "tamanho": tamanho}
+        return {"nome": nome, "raca": raca, "tamanho": tamanho}
 
     def mostra_cachorro(self, dados_cachorro):
         print("NUMERO CHIP DO CACHORRO: ", dados_cachorro["numero chip"])

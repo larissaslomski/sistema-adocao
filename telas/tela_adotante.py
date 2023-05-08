@@ -6,6 +6,7 @@ class TelaAdotante():
         print("2 - Alterar adotante")
         print("3 - Listar adotantes")
         print("4 - Excluir adotante")
+        print("5 - ")
         print("0 - Retornar")
 
         opcao = int(input("Escolha a opcao: "))
@@ -22,11 +23,11 @@ class TelaAdotante():
                 "tem_outros_animais": tem_outros_animais}
 
     def mostra_adotante(self, dados_adotante):
-        print("NOME DO ADOTANTE: ", dados_adotante["cpf"])
+        print("CPF DO ADOTANTE: ", dados_adotante["cpf"])
         print("NOME DO ADOTANTE: ", dados_adotante["nome"])
-        print("FONE DO ADOTANTE: ", dados_adotante["nascimento"])
-        print("CPF DO ADOTANTE: ", dados_adotante["endereco"])
-        print("CPF DO ADOTANTE: ", dados_adotante["tem_outros_animais"])
+        print("DATA DE NASCIMENTO DO ADOTANTE: ", dados_adotante["nascimento"])
+        print("ENDERECO DO ADOTANTE: ", dados_adotante["endereco"])
+        # print("OUTROS ANIMAIS: ", dados_adotante["tem_outros_animais"])
         print("\n")
 
     def seleciona_adotante(self):

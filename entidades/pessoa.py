@@ -27,13 +27,13 @@ class Pessoa:
         self.__cpf = cpf
 
     @nome.setter
-    def cpf(self, nome):
+    def nome(self, nome):
         self.__nome = nome
 
     @nascimento.setter
-    def cpf(self, nascimento):
+    def nascimento(self, nascimento):
         self.__nascimento = nascimento
 
     @endereco.setter
-    def cpf(self, endereco):
+    def endereco(self, endereco):
         self.__endereco = endereco

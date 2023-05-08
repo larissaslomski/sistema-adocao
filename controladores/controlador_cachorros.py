@@ -19,6 +19,8 @@ class ControladorCachorros:
         num_chip_valido = self.pega_cachorro_por_num_chip(
             dados_cachorro['num_chip'])
         if num_chip_valido is None:
+            # criar numero do chip
+            # randint
             cachorro = Cachorro(dados_cachorro["num_chip"], dados_cachorro["nome"], dados_cachorro["raca"],
                                 dados_cachorro["historico_vacinacao"], dados_cachorro["tamanho"])
             self.__cachorros.append(cachorro)
@@ -35,6 +37,7 @@ class ControladorCachorros:
                 self.__tela_cachorro.mostra_cachorro(
                     {"num_chip": cachorro.num_chip, "nome": cachorro.nome, "raca": cachorro.raca, "tamanho": cachorro.tamanho})
                     # como listar historicos? apenas no controlador de historicos?
+                #controlador de cachorrs tem o controlador de sistemas para conseguirmos listar os historicos
         else:
             self.__tela_cachorro.mostra_mensagem(
                 "ERRO: Não existe nenhum cachorro cadastrado no Sistema.")

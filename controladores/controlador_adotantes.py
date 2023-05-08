@@ -18,10 +18,14 @@ class ControladorAdotantes:
         dados_adotante = self.__tela_adotante.pega_dados_adotante()
         cpf_valido = self.pega_adotante_por_cpf(dados_adotante['cpf'])
         if cpf_valido is None:
-            tem_outros_animais = dados_adotante["tem_outros_animais"]
-            if tem_outros_animais.upper() == "S" or tem_outros_animais.upper() == "N":
+            tem_outros_animais = dados_adotante["tem_outros_animais"].upper()
+            if tem_outros_animais == "S" or tem_outros_animais == "N":
+                if tem_outros_animais == "S":
+                    tem_outros_animais = True
+                else:
+                    tem_outros_animais = False
                 adotante = Adotante(
-                dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], dados_adotante["tem_outros_animais"])
+                dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], tem_outros_animais)
                 self.__adotantes.append(adotante)
                 self.__tela_adotante.mostra_mensagem("Adotante cadastrado com sucesso no sistema")
             else:
@@ -36,7 +40,7 @@ class ControladorAdotantes:
         if tam_lista_adotantes > 0:
             for adotante in self.__adotantes:
                 self.__tela_adotante.mostra_adotante(
-                    {"cpf": adotante.cpf, "nome": adotante.nome, "nascimento": adotante.nascimento, "tipo_habitacao": adotante.tipo_habitacao})
+                    {"cpf": adotante.cpf, "nome": adotante.nome, "nascimento": adotante.nascimento, "endereco": adotante.endereco, "tem_outros_animais": adotante.tem_outros_animais})
         else:
             self.__tela_adotante.mostra_mensagem(
                 "ERRO: Não existe nenhum adotante cadastrado no Sistema.")
@@ -44,16 +48,15 @@ class ControladorAdotantes:
     def alterar_adotante(self):
         self.listar_adotantes()
         cpf_adotante = self.__tela_adotante.seleciona_adotante()
-        adotante = self.pegar_adotante_por_cpf(cpf_adotante)
+        adotante = self.pega_adotante_por_cpf(cpf_adotante)
 
         if (adotante is not None):
             novos_dados_adotante = self.__tela_adotante.pega_dados_adotante()
             adotante.cpf = novos_dados_adotante["cpf"]
             adotante.nome = novos_dados_adotante["nome"]
             adotante.nascimento = novos_dados_adotante["nascimento"]
-            # conferir se as instancias de tipo_habitacao esta corretas
-            adotante.tipo_habitacao.tipo_hab = novos_dados_adotante["tipo_hab"]
-            adotante.tipo_habitacao.tamanho_hab = novos_dados_adotante["tamanho_hab"]
+            adotante.endereco = novos_dados_adotante["endereco"]
+            # adotante.tem_outros_animais = novos_dados_adotante["tem_outros_animais"]
             self.listar_adotantes()
         else:
             self.__tela_adotante.mostra_mensagem(
@@ -62,10 +65,12 @@ class ControladorAdotantes:
     def excluir_adotante(self):
         self.listar_adotantes()
         cpf_adotante = self.__tela_adotante.seleciona_adotante()
-        adotante = self.pegar_adotante_por_cpf(cpf_adotante)
+        adotante = self.pega_adotante_por_cpf(cpf_adotante)
 
         if (adotante is not None):
-            self.__adotantes.romove(adotante)
+            self.__adotantes.remove(adotante)
+            self.__tela_adotante.mostra_mensagem(
+                f"Adotante de cpf: {cpf_adotante} foi excluido do sistema.")
             self.listar_adotantes()
         else:
             self.__tela_adotante.mostra_mensagem(

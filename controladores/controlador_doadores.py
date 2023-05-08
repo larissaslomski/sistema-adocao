@@ -15,7 +15,16 @@ class ControladorDoadores():
         return None
 
     def incluir(self):
-        pass
+        dados_doador = self.__tela_doador.pega_dados_doador()
+        cpf_valido = self.pegar_doador_por_cpf(dados_doador['cpf'])
+        if cpf_valido is None:
+                doador = Doador(
+                    dados_doador["cpf"], dados_doador["nome"], dados_doador["nascimento"],
+                    dados_doador["endereco"])
+                self.__doadores.append(doador)
+                self.__tela_doador.mostra_mensagem("Adotante cadastrado com sucesso no sistema")
+        else:
+            self.__tela_doador.mostra_mensagem("ERRO: o Adotante ja esta cadastrado no Sistema.")
 
     def listar_doadores(self):
         pass
