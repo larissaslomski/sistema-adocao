@@ -56,7 +56,7 @@ class ControladorAdotantes:
             adotante.nome = novos_dados_adotante["nome"]
             adotante.nascimento = novos_dados_adotante["nascimento"]
             adotante.endereco = novos_dados_adotante["endereco"]
-            # adotante.tem_outros_animais = novos_dados_adotante["tem_outros_animais"]
+            adotante.tem_outros_animais = novos_dados_adotante["tem_outros_animais"]
             self.listar_adotantes()
         else:
             self.__tela_adotante.mostra_mensagem(

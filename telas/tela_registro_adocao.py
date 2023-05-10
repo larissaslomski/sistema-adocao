@@ -1,3 +1,4 @@
+from datetime import date
 class TelaRegistroAdocao():
     def tela_opcoes(self):
         print("-------REGISTRO DE ADOÇÃO--------")
@@ -14,19 +15,17 @@ class TelaRegistroAdocao():
     def pega_dados_adotante(self):
         print("-------- DADOS REGISTRO DE ADOÇÃO ----------")
         codigo_registro = input("Código do registro de adoção: ")
-        nome = input("Nome: ")
+        data = date.today()
         nascimento = input("Data de nascimento: ")
         endereco = input("Endereço: ")
         tem_outros_animais = input("Possui outros animais? S/N")
-        return {"cpf": cpf, "nome": nome, "nascimento": nascimento, "endereco": endereco,
-                "tem outros animais": tem_outros_animais}
+        return {"codigo_registro": codigo_registro, "nome": nome, "nascimento": nascimento, "endereco": endereco}
 
     def mostra_adotante(self, dados_adotante):
-        print("NOME DO REGISTRO DE ADOÇÃO: ", dados_adotante["cpf"])
+        print("CÓDIGO DO REGISTRO DE ADOÇÃO: ", dados_adotante["codigo_registro"])
         print("NOME DO REGISTRO DE ADOÇÃO: ", dados_adotante["nome"])
         print("FONE DO REGISTRO DE ADOÇÃO: ", dados_adotante["nascimento"])
         print("CPF DO REGISTRO DE ADOÇÃO: ", dados_adotante["endereco"])
-        print("CPF DO REGISTRO DE ADOÇÃO: ", dados_adotante["tem_outros_animais"])
         print("\n")
 
     def seleciona_adotante(self):

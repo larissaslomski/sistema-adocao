@@ -20,10 +20,10 @@ class TelaDoador():
         return {"cpf": cpf, "nome": nome, "nascimento": nascimento, "endereco": endereco}
 
     def mostra_doador(self, dados_doador):
-        print("NOME DO DOADOR: ", dados_doador["cpf"])
+        print("CPF DO DOADOR: ", dados_doador["cpf"])
         print("NOME DO DOADOR: ", dados_doador["nome"])
-        print("FONE DO DOADOR: ", dados_doador["nascimento"])
-        print("CPF DO DOADOR: ", dados_doador["endereco"])
+        print("NASCIMENTO DO DOADOR: ", dados_doador["nascimento"])
+        print("ENDEREÇO DO DOADOR: ", dados_doador["endereco"])
         print("\n")
 
     def seleciona_doador(self):

@@ -6,7 +6,6 @@ class TelaAdotante():
         print("2 - Alterar adotante")
         print("3 - Listar adotantes")
         print("4 - Excluir adotante")
-        print("5 - ")
         print("0 - Retornar")
 
         opcao = int(input("Escolha a opcao: "))
