@@ -12,25 +12,21 @@ class TelaRegistroAdocao():
         opcao = int(input("Escolha a opcao: "))
         return opcao
 
-    def pega_dados_adotante(self):
+    def pega_dados_registro_adocao(self):
         print("-------- DADOS REGISTRO DE ADOÇÃO ----------")
+        #vamos criar codigo de maneira aleatoria?
         codigo_registro = input("Código do registro de adoção: ")
         data = date.today()
-        nascimento = input("Data de nascimento: ")
-        endereco = input("Endereço: ")
-        tem_outros_animais = input("Possui outros animais? S/N")
-        return {"codigo_registro": codigo_registro, "nome": nome, "nascimento": nascimento, "endereco": endereco}
+        return {"codigo_registro": codigo_registro, "data": data}
 
-    def mostra_adotante(self, dados_adotante):
-        print("CÓDIGO DO REGISTRO DE ADOÇÃO: ", dados_adotante["codigo_registro"])
-        print("NOME DO REGISTRO DE ADOÇÃO: ", dados_adotante["nome"])
-        print("FONE DO REGISTRO DE ADOÇÃO: ", dados_adotante["nascimento"])
-        print("CPF DO REGISTRO DE ADOÇÃO: ", dados_adotante["endereco"])
+    def mostra_registro_adocao(self, dados_registro_adocao):
+        print("CÓDIGO DO REGISTRO DE ADOÇÃO: ", dados_registro_adocao["codigo_registro"])
+        print("NOME DO REGISTRO DE ADOÇÃO: ", dados_registro_adocao["data"])
         print("\n")
 
-    def seleciona_adotante(self):
-        cpf = input("CPF do adotante que deseja selecionar: ")
-        return cpf
+    def seleciona_registro_adocao(self):
+        registro = input("codigo do adotante que deseja selecionar: ")
+        return registro
 
     def mostra_mensagem(self, msg):
         print(msg)

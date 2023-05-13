@@ -1,10 +1,12 @@
 from entidades.animal import Animal
 from entidades.historico_vacinacao import HistoricoVacinacao
+import uuid
 
 
 class Cachorro(Animal):
-    def __init__(self, num_chip: int, nome: str, raca: str, historico_vacinacao: HistoricoVacinacao, tamanho: str):
-        super().__init__(num_chip, nome, raca, historico_vacinacao)
+    #incluir historico de vacinacao no init e super(classe super tmb)
+    def __init__(self, num_chip: int, nome: str, raca: str, tamanho: str):
+        super().__init__(num_chip, nome, raca)
         if isinstance(tamanho, str):
             self.__tamanho = tamanho
 

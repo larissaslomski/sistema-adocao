@@ -1,5 +1,6 @@
 from entidades.cachorro import Cachorro
 from telas.tela_cachorro import TelaCachorro
+from uuid import uuid4
 
 
 class ControladorCachorros:
@@ -16,31 +17,31 @@ class ControladorCachorros:
 
     def incluir_cachorro(self):
         dados_cachorro = self.__tela_cachorro.pega_dados_cachorro()
-        num_chip_valido = self.pega_cachorro_por_num_chip(
-            dados_cachorro['num_chip'])
-        if num_chip_valido is None:
-            # criar numero do chip
-            # randint
-            cachorro = Cachorro(dados_cachorro["num_chip"], dados_cachorro["nome"], dados_cachorro["raca"],
-                                dados_cachorro["historico_vacinacao"], dados_cachorro["tamanho"])
-            self.__cachorros.append(cachorro)
-            self.__tela_cachorro.mostra_mensagem(
-                "Animal cadastrado com sucesso no Sistema.")
-        else:
-            self.__tela_cachorro.mostra_mensagem(
-                "ERRO: o Animal ja esta cadastrado no Sistema.")
+        # num_chip_valido = self.pega_cachorro_por_num_chip(
+        #     dados_cachorro['num_chip'])
+        # if num_chip_valido is None:
+        numero_chip = uuid4().int
+        cachorro = Cachorro(numero_chip, dados_cachorro["nome"], dados_cachorro["raca"], dados_cachorro["tamanho"])
+        dados_cachorro["numero_chip"] = numero_chip
+        self.__cachorros.append(cachorro)
+        self.__tela_cachorro.mostra_mensagem(
+            "Animal cadastrado com sucesso no Sistema.")
+        # else:
+        #     self.__tela_cachorro.mostra_mensagem(
+        #         "ERRO: o Animal ja esta cadastrado no Sistema.")
 
     def listar_cachorros(self):
         tam_lista_cachorros = len(self.__cachorros)
         if tam_lista_cachorros > 0:
             for cachorro in self.__cachorros:
                 self.__tela_cachorro.mostra_cachorro(
-                    {"num_chip": cachorro.num_chip, "nome": cachorro.nome, "raca": cachorro.raca, "tamanho": cachorro.tamanho})
+                    {"numero_chip": cachorro.num_chip, "nome": cachorro.nome, "raca": cachorro.raca, "tamanho": cachorro.tamanho})
                     # como listar historicos? apenas no controlador de historicos?
                 #controlador de cachorrs tem o controlador de sistemas para conseguirmos listar os historicos
         else:
             self.__tela_cachorro.mostra_mensagem(
                 "ERRO: Não existe nenhum cachorro cadastrado no Sistema.")
+            self.__tela_cachorro.tela_opcoes()
 
     def alterar_cachorro(self):
         self.listar_cachorros()
@@ -52,12 +53,13 @@ class ControladorCachorros:
             cachorro.nome = novos_dados_cachorro["nome"]
             cachorro.raca = novos_dados_cachorro["raca"]
             cachorro.tamanho = novos_dados_cachorro["tamanho"]
-            # num_chip é fixo (?)
+            # num_chip é fixo (?) resposta: vou considerar q sim
             # historico_vacinacao só pode ser alterado na sua tela (?)
             self.listar_cachorros()
         else:
             self.__tela_cachorro.mostra_mensagem(
                 "ERRO: O cachorro não existe.")
+            self.__tela_cachorro.tela_opcoes()
 
     def excluir_cachorro(self):
         self.listar_cachorros()
@@ -65,11 +67,15 @@ class ControladorCachorros:
         cachorro = self.pega_cachorro_por_num_chip(num_chip)
 
         if (cachorro is not None):
-            self.__cachorros.romove(cachorro)
-            self.listar_cachorros()
+            self.__cachorros.remove(cachorro)
+            self.__tela_cachorro.mostra_mensagem(f"O cachorro de numero chip: {num_chip} foi excluido do sistema")
+            if len(self.__cachorros) == 0:
+                self.__tela_cachorro.mostra_mensagem("Não existe mais nenhum cachorro cadastrado no sistema")
+            else:
+                self.__tela_cachorro.tela_opcoes()
         else:
-            self.__tela_cachorro.mostra_mensagem(
-                "ERRO: O Cachorro não existe.")
+            self.__tela_cachorro.mostra_mensagem("ERRO: O Cachorro não existe.")
+            self.__tela_cachorro.tela_opcoes()
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()

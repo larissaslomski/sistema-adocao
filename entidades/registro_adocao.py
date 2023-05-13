@@ -1,13 +1,13 @@
 from entidades.adotante import Adotante
 from entidades.animal import Animal
 from datetime import date
+import uuid
 
 
 class RegistroAdocao:
-    def __init__(self, codigo_registro: int, animal: Animal, adotante: Adotante, termo_responsabilidade: bool):
+    def __init__(self, animal: Animal, adotante: Adotante, termo_responsabilidade: bool):
         self.__data = date.today()
-        #criar uma maneira de gerar os codigos de registro
-        self.__codigo_registro = codigo_registro
+        self.__codigo_registro = uuid.uuid4()
         if isinstance(animal, Animal):
             self.__animal = animal
         if isinstance(adotante, Adotante):

@@ -15,12 +15,13 @@ class ControladorRegistrosAdocao():
         return None
 
     def incluir_registro_adocao(self):
-        self.__controlador_sistema.controlador_amigos.lista_amigos()
-        self.__controlador_sistema.controlador_livros.lista_livro()
-        dados_emprestimo = self.__tela_emprestimo.pega_dados_emprestimo()
+        self.__controlador_sistema.controlador_adotantes.listar_adotantes()
+        self.__controlador_sistema.controlador_cachorros.listar_cachorros()
+        self.__controlador_sistema.controlador_gatos.listar_gatos()
+        dados_registro_adocao = self.__tela_registro_adocao.pega_dados_registro_adocao()
 
-        amigo = self.__controlador_sistema.controlador_amigos.pega_amigo_por_cpf(dados_emprestimo["cpf"])
-        livro = self.__controlador_sistema.controlador_livros.pega_livro_por_codigo(dados_emprestimo["codigo"])
+        adotante = self.__controlador_sistema.controlador_adotantes.pega_adotante_por_cpf(dados_registro_adocao["cpf"])
+        cachorro = self.__controlador_sistema.controlador_cachorros.pega_cachorro_por_num_chip(dados_registro_adocao["codigo"])
         if (amigo is not None and livro is not None):
             emprestimo = Emprestimo(amigo, livro, randint(0, 100))
             self.__emprestimos.append(emprestimo)

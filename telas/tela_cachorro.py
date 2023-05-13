@@ -15,18 +15,19 @@ class TelaCachorro():
         print("-------- DADOS CACHORRO ----------")
         nome = input("Nome: ")
         raca = input("Raça: ")
-        tamanho = input("Endereço: ")
+        tamanho = input("Tamanho: ")
         return {"nome": nome, "raca": raca, "tamanho": tamanho}
 
     def mostra_cachorro(self, dados_cachorro):
-        print("NUMERO CHIP DO CACHORRO: ", dados_cachorro["numero chip"])
+
         print("NOME DO CACHORRO: ", dados_cachorro["nome"])
         print("RAÇA DO CACHORRO: ", dados_cachorro["raca"])
         print("TAMANHO DO CACHORRO: ", dados_cachorro["tamanho"])
+        print("NUMERO CHIP DO CACHORRO: ", dados_cachorro["numero_chip"])
         print("\n")
 
     def seleciona_cachorro(self):
-        numero_chip = input("Numero do chip do cachorro que deseja selecionar: ")
+        numero_chip = int(input("Numero do chip do cachorro que deseja selecionar: "))
         return numero_chip
 
     def mostra_mensagem(self, msg):

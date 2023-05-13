@@ -1,5 +1,7 @@
-a = 'N'
-if a == "S" or a == "s" or a == "N" or a == "n":
-    print("igual")
-else:
-    print( "diferente")
+from random import randint
+result = []
+r = randint(100, 999)
+if r not in result:
+    result.append(r)
+
+print(result)

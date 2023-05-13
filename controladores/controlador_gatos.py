@@ -1,8 +1,9 @@
 from entidades.gato import Gato
 from telas.tela_gato import TelaGato
+from uuid import uuid4
 
 
-class ControladorGatos():
+class ControladorGatos:
     def __init__(self, controlador_sistema):
         self.__gatos = []
         self.__tela_gato = TelaGato()
@@ -16,28 +17,31 @@ class ControladorGatos():
 
     def incluir_gato(self):
         dados_gato = self.__tela_gato.pega_dados_gato()
-        num_chip_valido = self.pega_gato_por_num_chip(
-            dados_gato['num_chip'])
-        if num_chip_valido is None:
-            gato = gato(dados_gato["num_chip"], dados_gato["nome"], dados_gato["raca"],
-                        dados_gato["historico_vacinacao"])
-            self.__gatos.append(gato)
-            self.__tela_gato.mostra_mensagem(
-                "Animal cadastrado com sucesso no Sistema.")
-        else:
-            self.__tela_gato.mostra_mensagem(
-                "ERRO: o Animal ja esta cadastrado no Sistema.")
+        # num_chip_valido = self.pega_gato_por_num_chip(
+        #     dados_gato['num_chip'])
+        # if num_chip_valido is None:
+        numero_chip = uuid4().int
+        gato = Gato(numero_chip, dados_gato["nome"], dados_gato["raca"])
+        dados_gato["numero_chip"] = numero_chip
+        self.__gatos.append(gato)
+        self.__tela_gato.mostra_mensagem(
+            "Animal cadastrado com sucesso no Sistema.")
+        # else:
+        #     self.__tela_gato.mostra_mensagem(
+        #         "ERRO: o Animal ja esta cadastrado no Sistema.")
 
     def listar_gatos(self):
         tam_lista_gatos = len(self.__gatos)
         if tam_lista_gatos > 0:
             for gato in self.__gatos:
                 self.__tela_gato.mostra_gato(
-                    {"num_chip": gato.num_chip, "nome": gato.nome, "raca": gato.raca})
+                    {"numero_chip": gato.num_chip, "nome": gato.nome, "raca": gato.raca})
                     # como listar historicos? apenas no controlador de historicos?
+                #controlador de cachorrs tem o controlador de sistemas para conseguirmos listar os historicos
         else:
             self.__tela_gato.mostra_mensagem(
-                "ERRO: Não existe nenhum Gato cadastrado no Sistema.")
+                "ERRO: Não existe nenhum gato cadastrado no sistema.")
+            self.__tela_gato.tela_opcoes()
 
     def alterar_gato(self):
         self.listar_gatos()
@@ -48,12 +52,13 @@ class ControladorGatos():
             novos_dados_gato = self.__tela_gato.pega_dados_gato()
             gato.nome = novos_dados_gato["nome"]
             gato.raca = novos_dados_gato["raca"]
-            # num_chip é fixo (?)
+            # num_chip é fixo (?) resposta: vou considerar q sim
             # historico_vacinacao só pode ser alterado na sua tela (?)
             self.listar_gatos()
         else:
             self.__tela_gato.mostra_mensagem(
                 "ERRO: O gato não existe.")
+            self.__tela_gato.tela_opcoes()
 
     def excluir_gato(self):
         self.listar_gatos()
@@ -61,11 +66,15 @@ class ControladorGatos():
         gato = self.pega_gato_por_num_chip(num_chip)
 
         if (gato is not None):
-            self.__gatos.romove(gato)
-            self.listar_gatos()
+            self.__gatos.remove(gato)
+            self.__tela_gato.mostra_mensagem(f"O gato de numero chip: {num_chip} foi excluido do sistema")
+            if len(self.__gatos) == 0:
+                self.__tela_gato.mostra_mensagem("Não existe mais nenhum gato cadastrado no sistema")
+            else:
+                self.__tela_gato.tela_opcoes()
         else:
-            self.__tela_gato.mostra_mensagem(
-                "ERRO: O gato não existe.")
+            self.__tela_gato.mostra_mensagem("ERRO: O gato não existe.")
+            self.__tela_gato.tela_opcoes()
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()

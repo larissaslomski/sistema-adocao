@@ -29,7 +29,7 @@ class ControladorAdotantes:
                 self.__adotantes.append(adotante)
                 self.__tela_adotante.mostra_mensagem("Adotante cadastrado com sucesso no sistema")
             else:
-                self.__tela_adotante.mostra_mensagem("ERRO: informações inválidas, tente novamente")
+                self.__tela_adotante.mostra_mensagem("ERRO: informações inválidas, digite novamente os dados:")
                 self.__tela_adotante.pega_dados_adotante()
         else:
             self.__tela_adotante.mostra_mensagem("ERRO: o Adotante ja esta cadastrado no Sistema.")
@@ -52,7 +52,6 @@ class ControladorAdotantes:
 
         if (adotante is not None):
             novos_dados_adotante = self.__tela_adotante.pega_dados_adotante()
-            adotante.cpf = novos_dados_adotante["cpf"]
             adotante.nome = novos_dados_adotante["nome"]
             adotante.nascimento = novos_dados_adotante["nascimento"]
             adotante.endereco = novos_dados_adotante["endereco"]
@@ -71,10 +70,13 @@ class ControladorAdotantes:
             self.__adotantes.remove(adotante)
             self.__tela_adotante.mostra_mensagem(
                 f"Adotante de cpf: {cpf_adotante} foi excluido do sistema.")
-            self.listar_adotantes()
+            if len(self.__adotantes) == 0:
+                self.__tela_adotante.mostra_mensagem(f"Não existe mais nenhum adotante cadastrado no sistema.")
+            else:
+                self.__tela_adotante.tela_opcoes()
         else:
-            self.__tela_adotante.mostra_mensagem(
-                "ERRO: O Adotante não existe.")
+            self.__tela_adotante.mostra_mensagem("ERRO: O Adotante não existe.")
+            self.__tela_adotante.tela_opcoes()
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
