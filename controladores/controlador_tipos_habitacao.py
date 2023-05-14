@@ -8,42 +8,25 @@ class ControladorTipoHabitacao:
         self.__controlador_sistema = controlador_sistema
 
     def incluir_tipo_habitacao(self):
-        tipo_habitacao = self.abre_tela()
-        self.__tela_tipo_habitacao.mostrar_mensagem(tipo_habitacao)
-        return tipo_habitacao
-
-    def cria_casa_pequena(self):
-        tipo_habitacao = ['casa', 'pequena']
-        return tipo_habitacao
-
-    def cria_casa_media(self):
-        tipo_habitacao = TipoHabitacao('casa', 'media')
-        return tipo_habitacao
-
-    def cria_casa_grande(self):
-        tipo_habitacao = TipoHabitacao('casa', 'grande')
-        return tipo_habitacao
-
-    def cria_apartamento_pequeno(self):
-        tipo_habitacao = TipoHabitacao('apartamento', 'pequeno')
-        return tipo_habitacao
-
-    def cria_apartamento_medio(self):
-        tipo_habitacao = TipoHabitacao('apartamento', 'medio')
-        return tipo_habitacao
-
-    def cria_apartamento_grande(self):
-        tipo_habitacao = TipoHabitacao('apartamento', 'grande')
-        return tipo_habitacao
+        while True:
+            tipo_habitacao = self.__tela_tipo_habitacao.pega_tipo_habitacao()
+            if tipo_habitacao not in [1, 2, 3, 4, 5, 6]:
+                self.__tela_tipo_habitacao.mostrar_mensagem(
+                    "ERRO: Digite um valor válido.")
+            else:
+                if tipo_habitacao == 1:
+                    tipo_habitacao = TipoHabitacao('casa', 'pequena')
+                elif tipo_habitacao == 2:
+                    tipo_habitacao = TipoHabitacao('casa', 'media')
+                elif tipo_habitacao == 3:
+                    tipo_habitacao = TipoHabitacao('casa', 'grande')
+                elif tipo_habitacao == 4:
+                    tipo_habitacao = TipoHabitacao('apartamento', 'pequeno')
+                elif tipo_habitacao == 5:
+                    tipo_habitacao = TipoHabitacao('apartamento', 'medio')
+                else:
+                    tipo_habitacao = TipoHabitacao('apartamento', 'grande')
+                return tipo_habitacao
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
-
-    def abre_tela(self):
-        lista_opcoes = {1: self.cria_casa_pequena, 2: self.cria_casa_media, 3: self.cria_casa_grande, 4: self.cria_apartamento_pequeno,
-                        5: self.cria_apartamento_medio, 6: self.cria_apartamento_grande, 0: self.retornar}
-
-        continua = True
-        while continua:
-            lista_opcoes[self.__tela_tipo_habitacao.tela_opcoes()]()
-            break

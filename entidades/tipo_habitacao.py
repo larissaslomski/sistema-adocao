@@ -5,6 +5,9 @@ class TipoHabitacao:
         if isinstance(tamanho_hab, str):
             self.__tamanho_hab = tamanho_hab
 
+    def __str__(self):
+        return f"Tipo: {self.__tipo_hab}, Tamanho: {self.__tamanho_hab}"
+
 
 @property
 def tipo_hab(self):

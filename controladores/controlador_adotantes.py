@@ -15,10 +15,8 @@ class ControladorAdotantes:
         return None
 
     def incluir_adotante(self):
-        tipo_habitacao = self.__controlador_sistema.controlador_tipos_habitacao.incluir_tipo_habitacao()
-        print(tipo_habitacao)
         dados_adotante = self.__tela_adotante.pega_dados_adotante()
-
+        tipo_habitacao = self.__controlador_sistema.controlador_tipos_habitacao.incluir_tipo_habitacao()
         cpf_valido = self.pega_adotante_por_cpf(dados_adotante['cpf'])
         if cpf_valido is None:
             tem_outros_animais = dados_adotante["tem_outros_animais"].upper()
@@ -46,7 +44,7 @@ class ControladorAdotantes:
         if tam_lista_adotantes > 0:
             for adotante in self.__adotantes:
                 self.__tela_adotante.mostra_adotante(
-                    {"cpf": adotante.cpf, "nome": adotante.nome, "nascimento": adotante.nascimento, "endereco": adotante.endereco, "tem_outros_animais": adotante.tem_outros_animais})
+                    {"cpf": adotante.cpf, "nome": adotante.nome, "nascimento": adotante.nascimento, "endereco": adotante.endereco, "tem_outros_animais": adotante.tem_outros_animais, "tipo_habitacao": adotante.tipo_habitacao})
         else:
             self.__tela_adotante.mostra_mensagem(
                 "ERRO: Não existe nenhum adotante cadastrado no Sistema.")
@@ -57,11 +55,13 @@ class ControladorAdotantes:
         adotante = self.pega_adotante_por_cpf(cpf_adotante)
 
         if (adotante is not None):
-            novos_dados_adotante = self.__tela_adotante.pega_dados_adotante()
+            novos_dados_adotante = self.__tela_adotante.pega_dados_adotante_alt()
+            novo_tipo_habitacao = self.__controlador_sistema.controlador_tipos_habitacao.incluir_tipo_habitacao()
             adotante.nome = novos_dados_adotante["nome"]
             adotante.nascimento = novos_dados_adotante["nascimento"]
             adotante.endereco = novos_dados_adotante["endereco"]
             adotante.tem_outros_animais = novos_dados_adotante["tem_outros_animais"]
+            adotante.tipo_habitacao = novo_tipo_habitacao
             self.listar_adotantes()
         else:
             self.__tela_adotante.mostra_mensagem(
