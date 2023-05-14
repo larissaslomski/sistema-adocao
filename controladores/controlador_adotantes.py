@@ -28,23 +28,15 @@ class ControladorAdotantes:
                 else:
                     tem_outros_animais = False
                 adotante = Adotante(
-<<<<<<< Updated upstream
-                    dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], tem_outros_animais, tipo_habitacao)
-=======
-                    dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], tem_outros_animais)
->>>>>>> Stashed changes
+                    dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"],
+                    dados_adotante["endereco"], tem_outros_animais, tipo_habitacao)
                 self.__adotantes.append(adotante)
                 self.__tela_adotante.mostra_mensagem(
                     "Adotante cadastrado com sucesso no sistema")
             else:
                 self.__tela_adotante.mostra_mensagem(
-<<<<<<< Updated upstream
                     "ERRO: informações inválidas, digite novamente os dados:")
                 self.__tela_adotante.pega_dados_adotante()  # nao seria necessario um while(?)
-=======
-                    "ERRO: informações inválidas, tente novamente")
-                self.__tela_adotante.pega_dados_adotante()
->>>>>>> Stashed changes
         else:
             self.__tela_adotante.mostra_mensagem(
                 "ERRO: o Adotante ja esta cadastrado no Sistema.")
