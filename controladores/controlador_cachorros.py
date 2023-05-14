@@ -41,7 +41,7 @@ class ControladorCachorros:
         else:
             self.__tela_cachorro.mostra_mensagem(
                 "ERRO: Não existe nenhum cachorro cadastrado no Sistema.")
-            self.__tela_cachorro.tela_opcoes()
+            self.__controlador_sistema.abre_tela()
 
     def alterar_cachorro(self):
         self.listar_cachorros()

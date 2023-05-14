@@ -32,7 +32,7 @@ class ControladorVacinas():
         else:
             self.__tela_vacina.mostra_mensagem(
                 "ERRO: Não existe nenhuma vacina cadastrada no sistema.")
-            self.__tela_vacina.tela_opcoes()
+            self.__controlador_sistema.abre_tela()
 
     def alterar_vacina(self):
         self.listar_vacina()

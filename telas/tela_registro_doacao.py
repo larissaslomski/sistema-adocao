@@ -28,9 +28,8 @@ class TelaRegistroDoacao():
     def mostra_registro_doacao(self, dados_registro_doacao):
         print("CÓDIGO DO REGISTRO DE DOAÇÃO: ", dados_registro_doacao["codigo_registro"])
         print("DATA DO REGISTRO DE DOAÇÃO: ", dados_registro_doacao["data"])
-        print("STATUS DO TERMO DE RESPONSABILIDADE DO REGISTRO DE DOAÇÃO: ", dados_registro_doacao["termo_responsabilidade"])
-        print("CPF DO ADOTANTE DO REGISTRO DE DOAÇÃO: ", dados_registro_doacao["cpf_adotante"])
-
+        print("NOME DO DOADOR: ", dados_registro_doacao["nome_doador"])
+        print("MOTIVO DA DOAÇÃO: ", dados_registro_doacao["motivo"])
         print("\n")
 
     def seleciona_registro_doacao(self):

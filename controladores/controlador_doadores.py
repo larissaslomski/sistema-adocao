@@ -22,7 +22,7 @@ class ControladorDoadores():
                     dados_doador["cpf"], dados_doador["nome"], dados_doador["nascimento"],
                     dados_doador["endereco"])
                 self.__doadores.append(doador)
-                self.__tela_doador.mostra_mensagem("Doador cadastrado com sucesso no sistema")
+                self.__tela_doador.mostra_mensagem("Doador cadastrado com sucesso no sistema.")
         else:
             self.__tela_doador.mostra_mensagem("ERRO: o Doador ja esta cadastrado no Sistema.")
 
@@ -36,6 +36,7 @@ class ControladorDoadores():
         else:
             self.__tela_doador.mostra_mensagem(
                 "ERRO: Não existe nenhum adotante cadastrado no Sistema.")
+            self.__controlador_sistema.abre_tela()
 
     def alterar_doador(self):
         self.listar_doadores()

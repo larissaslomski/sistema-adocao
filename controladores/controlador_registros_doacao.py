@@ -26,32 +26,32 @@ class ControladorRegistrosDoacao():
                 break
         if cachorro_ou_gato == 1:
             self.__controlador_sistema.controlador_cachorros.listar_cachorros()
-            self.__controlador_sistema.controlador_adotantes.listar_adotantes()
+            self.__controlador_sistema.controlador_doadores.listar_doadores()
             self.__tela_registro_doacao.mostra_mensagem("Precisamos do CPF do doador, o número do chip do cachorro e o motivo da doação:")
             dados_registro_doacao = self.__tela_registro_doacao.pega_dados_registro_doacao()
-            adotante = self.__controlador_sistema.controlador_adotantes.pega_adotante_por_cpf(dados_registro_doacao["cpf"])
+            doador = self.__controlador_sistema.controlador_doadores.pegar_doador_por_cpf(dados_registro_doacao["cpf"])
             cachorro = self.__controlador_sistema.controlador_cachorros.pega_cachorro_por_num_chip(dados_registro_doacao["numero_chip"])
-            if adotante is not None and cachorro is not None:
+            if doador is not None and cachorro is not None:
                 codigo_registro = uuid4().int
                 data = date.today()
-                registro_doacao = RegistroDoacao(codigo_registro, data, cachorro, adotante, dados_registro_doacao["motivo"])
+                registro_doacao = RegistroDoacao(codigo_registro, data, cachorro, doador, dados_registro_doacao["motivo"])
                 self.__registros_doacao.append(registro_doacao)
-                self.__tela_registro_doacao.mostra_mensagem(f"Inclusão de registro de doação realizada com sucesso")
+                self.__tela_registro_doacao.mostra_mensagem(f"Inclusão de registro de doação realizada com sucesso!")
             else:
                 self.__tela_registro_doacao.mostra_mensagem("Informações de doador ou chip animal invalidas, tente novamente.")
                 #fazer while verificação
         elif cachorro_ou_gato == 2:
-            self.__tela_registro_doacao.mostra_mensagem("Precisamos do CPF do doador e o número do chip do gato:")
+            self.__tela_registro_doacao.mostra_mensagem("Precisamos do CPF do doador, o número do chip do gato e o motivo da doação:")
             self.__controlador_sistema.controlador_gatos.listar_gatos()
-            self.__controlador_sistema.controlador_adotantes.listar_adotantes()
+            self.__controlador_sistema.controlador_doadores.listar_doadores()
             dados_registro_doacao = self.__tela_registro_doacao.pega_dados_registro_doacao()
             motivo = dados_registro_doacao["motivo"]
-            adotante = self.__controlador_sistema.controlador_adotantes.pega_adotante_por_cpf(dados_registro_doacao["cpf"])
+            doador = self.__controlador_sistema.controlador_doadores.pegar_doador_por_cpf(dados_registro_doacao["cpf"])
             gato = self.__controlador_sistema.controlador_gatos.pega_gato_por_num_chip(dados_registro_doacao["numero_chip"])
-            if adotante is not None and gato is not None:
+            if doador is not None and gato is not None:
                 codigo_registro = uuid4().int
                 data = date.today()
-                registro_doacao = RegistroDoacao(codigo_registro, data, gato, adotante, motivo)
+                registro_doacao = RegistroDoacao(codigo_registro, data, gato, doador, motivo)
                 self.__registros_doacao.append(registro_doacao)
                 self.__tela_registro_doacao.mostra_mensagem(f"Inclusão de registro de doação realizada com sucesso")
             else:
@@ -63,8 +63,8 @@ class ControladorRegistrosDoacao():
             #inserir animalfazer metodo abstrato em animal
             self.__tela_registro_doacao.mostra_registro_doacao({"codigo_registro": registro_doacao.codigo_registro,
                                                       "data": registro_doacao.data,
-                                                      "cpf_adotante": registro_doacao.adotante.cpf,
-                                                      "termo_responsabilidade": registro_doacao.termo_responsabilidade})
+                                                      "nome_doador": registro_doacao.doador.cpf,
+                                                      "motivo": registro_doacao.motivo})
 
     def excluir_registro_doacao(self):
         self.listar_registro_doacao()

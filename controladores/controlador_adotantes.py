@@ -48,6 +48,7 @@ class ControladorAdotantes:
         else:
             self.__tela_adotante.mostra_mensagem(
                 "ERRO: Não existe nenhum adotante cadastrado no Sistema.")
+            self.__controlador_sistema.abre_tela()
 
     def alterar_adotante(self):
         self.listar_adotantes()

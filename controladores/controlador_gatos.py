@@ -39,7 +39,7 @@ class ControladorGatos:
         else:
             self.__tela_gato.mostra_mensagem(
                 "ERRO: Não existe nenhum gato cadastrado no sistema.")
-            self.__tela_gato.tela_opcoes()
+            self.__controlador_sistema.abre_tela()
 
     def alterar_gato(self):
         self.listar_gatos()
