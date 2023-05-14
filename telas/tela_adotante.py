@@ -12,21 +12,33 @@ class TelaAdotante():
         return opcao
 
     def pega_dados_adotante(self):
-        print("-------- DADOS ADOTANTE ----------")
+        print("-------- DADOS ADOTANTE --------")
         cpf = input("CPF: ")
         nome = input("Nome: ")
         nascimento = input("Data de nascimento: ")
         endereco = input("Endereço: ")
-        tem_outros_animais = input("Possui outros animais? S/N")
+        tem_outros_animais = input("Possui outros animais?(S/N) ")
         return {"cpf": cpf, "nome": nome, "nascimento": nascimento, "endereco": endereco,
                 "tem_outros_animais": tem_outros_animais}
 
+    def pega_dados_adotante_alt(self):
+        print("-------- DADOS ADOTANTE --------")
+        nome = input("Nome: ")
+        nascimento = input("Data de nascimento: ")
+        endereco = input("Endereço: ")
+        tem_outros_animais = input("Possui outros animais?(S/N) ")
+        return {"nome": nome, "nascimento": nascimento, "endereco": endereco,
+                "tem_outros_animais": tem_outros_animais}
+
     def mostra_adotante(self, dados_adotante):
+        print("------------------------------------")
+        print("\n")
         print("CPF DO ADOTANTE: ", dados_adotante["cpf"])
         print("NOME DO ADOTANTE: ", dados_adotante["nome"])
         print("DATA DE NASCIMENTO DO ADOTANTE: ", dados_adotante["nascimento"])
         print("ENDERECO DO ADOTANTE: ", dados_adotante["endereco"])
-        # print("OUTROS ANIMAIS: ", dados_adotante["tem_outros_animais"])
+        print("OUTROS ANIMAIS: ", dados_adotante["tem_outros_animais"])
+        print("TIPO DE HABITACAO: ", dados_adotante["tipo_habitacao"])
         print("\n")
 
     def seleciona_adotante(self):
