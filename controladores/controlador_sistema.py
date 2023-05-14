@@ -6,6 +6,7 @@ from .controlador_gatos import ControladorGatos
 from .controlador_historicos_vacinacao import ControladorHistoricos
 from .controlador_registros_adocao import ControladorRegistrosAdocao
 from .controlador_registros_doacao import ControladorRegistrosDoacao
+from .controlador_tipos_habitacao import ControladorTipoHabitacao
 
 
 class ControladorSistema():
@@ -16,6 +17,8 @@ class ControladorSistema():
         self.__controlador_cachorros = ControladorCachorros(self)
         self.__controlador_gatos = ControladorGatos(self)
         self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
+        self.__controlador_tipos_habitacao = ControladorTipoHabitacao(self)
+        # self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
         # self.__controlador_registros_doacao = ControladorRegistrosDoacao(self)
         # self.__controlador_historicos_vacinacao = ControladorHistoricos(self)
 
@@ -34,6 +37,10 @@ class ControladorSistema():
     @property
     def controlador_gatos(self):
         return self.__controlador_gatos
+
+    @property
+    def controlador_tipos_habitacao(self):
+        return self.__controlador_tipos_habitacao
 
     def inicia_sistema(self):
         self.abre_tela()

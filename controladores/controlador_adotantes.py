@@ -15,7 +15,10 @@ class ControladorAdotantes:
         return None
 
     def incluir_adotante(self):
+        tipo_habitacao = self.__controlador_sistema.controlador_tipos_habitacao.incluir_tipo_habitacao()
+        print(tipo_habitacao)
         dados_adotante = self.__tela_adotante.pega_dados_adotante()
+
         cpf_valido = self.pega_adotante_por_cpf(dados_adotante['cpf'])
         if cpf_valido is None:
             tem_outros_animais = dados_adotante["tem_outros_animais"].upper()
@@ -25,15 +28,26 @@ class ControladorAdotantes:
                 else:
                     tem_outros_animais = False
                 adotante = Adotante(
-                dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], tem_outros_animais)
+<<<<<<< Updated upstream
+                    dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], tem_outros_animais, tipo_habitacao)
+=======
+                    dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"], dados_adotante["endereco"], tem_outros_animais)
+>>>>>>> Stashed changes
                 self.__adotantes.append(adotante)
-                self.__tela_adotante.mostra_mensagem("Adotante cadastrado com sucesso no sistema")
+                self.__tela_adotante.mostra_mensagem(
+                    "Adotante cadastrado com sucesso no sistema")
             else:
-                self.__tela_adotante.mostra_mensagem("ERRO: informações inválidas, digite novamente os dados:")
+                self.__tela_adotante.mostra_mensagem(
+<<<<<<< Updated upstream
+                    "ERRO: informações inválidas, digite novamente os dados:")
+                self.__tela_adotante.pega_dados_adotante()  # nao seria necessario um while(?)
+=======
+                    "ERRO: informações inválidas, tente novamente")
                 self.__tela_adotante.pega_dados_adotante()
+>>>>>>> Stashed changes
         else:
-            self.__tela_adotante.mostra_mensagem("ERRO: o Adotante ja esta cadastrado no Sistema.")
-
+            self.__tela_adotante.mostra_mensagem(
+                "ERRO: o Adotante ja esta cadastrado no Sistema.")
 
     def listar_adotantes(self):
         tam_lista_adotantes = len(self.__adotantes)
@@ -71,11 +85,13 @@ class ControladorAdotantes:
             self.__tela_adotante.mostra_mensagem(
                 f"Adotante de cpf: {cpf_adotante} foi excluido do sistema.")
             if len(self.__adotantes) == 0:
-                self.__tela_adotante.mostra_mensagem(f"Não existe mais nenhum adotante cadastrado no sistema.")
+                self.__tela_adotante.mostra_mensagem(
+                    f"Não existe mais nenhum adotante cadastrado no sistema.")
             else:
                 self.__tela_adotante.tela_opcoes()
         else:
-            self.__tela_adotante.mostra_mensagem("ERRO: O Adotante não existe.")
+            self.__tela_adotante.mostra_mensagem(
+                "ERRO: O Adotante não existe.")
             self.__tela_adotante.tela_opcoes()
 
     def retornar(self):

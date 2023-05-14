@@ -13,11 +13,5 @@ class TelaTipoHabitacao():
         opcao = int(input("Escolha a opcao: "))
         return opcao
 
-    def mostrar_mensagem(self, mensagem):
-        return mensagem
-
-    # def mostra_tipo_habitacao(self, dados_gato):
-    #     print("NUMERO CHIP DO GATO: ", dados_gato["numero chip"])
-    #     print("NOME DO GATO: ", dados_gato["nome"])
-    #     print("RAÇA DO GATO: ", dados_gato["raca"])
-    #     print("\n")
+    def mostrar_mensagem(self, msg):
+        print(msg)
