@@ -5,9 +5,10 @@ import uuid
 
 
 class RegistroAdocao:
-    def __init__(self, animal: Animal, adotante: Adotante, termo_responsabilidade: bool):
-        self.__data = date.today()
-        self.__codigo_registro = uuid.uuid4()
+    def __init__(self, codigo_registro: int, data: date, animal: Animal, adotante: Adotante, termo_responsabilidade: bool):
+        self.data = data
+        self.__codigo_registro = codigo_registro
+
         if isinstance(animal, Animal):
             self.__animal = animal
         if isinstance(adotante, Adotante):
