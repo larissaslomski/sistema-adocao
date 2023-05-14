@@ -10,6 +10,7 @@ class TelaSistema:
         print("5 - Menu registro de adoção")
         print("6 - Menu registro de doação")
         print("7 - Menu histórico de vacinação")
+        # print("8 - Menu vacinas")
         print("0 - Finalizar sistema")
         opcao = int(input("Escolha a opcao: "))
         return opcao

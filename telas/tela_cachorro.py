@@ -24,6 +24,7 @@ class TelaCachorro():
         print("RAÇA DO CACHORRO: ", dados_cachorro["raca"])
         print("TAMANHO DO CACHORRO: ", dados_cachorro["tamanho"])
         print("NUMERO CHIP DO CACHORRO: ", dados_cachorro["numero_chip"])
+        print("HISTÓRICO DE VACINAÇÃO DO CACHORRO: ", dados_cachorro["historico"])
         print("\n")
 
     def seleciona_cachorro(self):

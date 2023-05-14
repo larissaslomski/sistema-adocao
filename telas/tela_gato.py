@@ -21,6 +21,7 @@ class TelaGato():
         print("NOME DO GATO: ", dados_gato["nome"])
         print("RAÇA DO GATO: ", dados_gato["raca"])
         print("NUMERO CHIP DO GATO: ", dados_gato["numero_chip"])
+        print("HISTORICO VACINAÇÃO DO GATO: ", dados_gato["historico"])
         print("\n")
 
     def seleciona_gato(self):

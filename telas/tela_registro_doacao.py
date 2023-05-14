@@ -20,10 +20,10 @@ class TelaRegistroDoacao():
 
     def pega_dados_registro_doacao(self):
         print("-------- DADOS REGISTRO DE DOAÇÃO ----------")
-        cpf_adotante = input("Cpf do adotante: ")
-        numero_chip_animal = int(input("Numero do chip do animal: "))
-        motivo = int(input("Numero do chip do animal: "))
-        return {"cpf": cpf_adotante, "numero_chip": numero_chip_animal, "motivo": motivo}
+        cpf_doador = input("Cpf do doador: ")
+        numero_chip_animal = int(input("Numero do chip do animal a ser doado: "))
+        motivo = input("Motivo doação: ")
+        return {"cpf": cpf_doador, "numero_chip": numero_chip_animal, "motivo": motivo}
 
     def mostra_registro_doacao(self, dados_registro_doacao):
         print("CÓDIGO DO REGISTRO DE DOAÇÃO: ", dados_registro_doacao["codigo_registro"])

@@ -3,10 +3,11 @@ from .controlador_adotantes import ControladorAdotantes
 from .controlador_doadores import ControladorDoadores
 from .controlador_cachorros import ControladorCachorros
 from .controlador_gatos import ControladorGatos
-from .controlador_historicos_vacinacao import ControladorHistoricos
+from .controlador_historicos_vacinacao import ControladorHistoricoVacinacao
 from .controlador_registros_adocao import ControladorRegistrosAdocao
 from .controlador_registros_doacao import ControladorRegistrosDoacao
 from .controlador_tipos_habitacao import ControladorTipoHabitacao
+from .controlador_vacinas import ControladorVacinas
 
 
 class ControladorSistema():
@@ -18,10 +19,14 @@ class ControladorSistema():
         self.__controlador_gatos = ControladorGatos(self)
         self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
         self.__controlador_tipos_habitacao = ControladorTipoHabitacao(self)
-        # self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
-        # self.__controlador_registros_doacao = ControladorRegistrosDoacao(self)
-        # self.__controlador_historicos_vacinacao = ControladorHistoricos(self)
+        self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
+        self.__controlador_registros_doacao = ControladorRegistrosDoacao(self)
+        self.__controlador_historicos_vacinacao = ControladorHistoricoVacinacao(self)
+        self.__controlador_vacinas = ControladorVacinas(self)
 
+    @property
+    def controlador_vacinas(self):
+        return self.__controlador_vacinas
     @property
     def controlador_adotantes(self):
         return self.__controlador_adotantes
@@ -44,6 +49,9 @@ class ControladorSistema():
 
     def inicia_sistema(self):
         self.abre_tela()
+
+    def cadastra_vacinas(self):
+        self.__controlador_vacinas.abre_tela()
 
     # 1 - Abre a tela de cadastro de Adotantes
     def cadastra_adotantes(self):
@@ -85,7 +93,7 @@ class ControladorSistema():
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes()
-            while opcao_escolhida not in (1, 2, 3, 4, 5, 6, 7, 0):
+            while opcao_escolhida not in (1, 2, 3, 4, 5, 6, 7, 8, 0):
                 self.__tela_sistema.mostra_mensagem(
                     "ERRO: Opção inválida, tente novamente.")
                 opcao_escolhida = self.__tela_sistema.tela_opcoes()

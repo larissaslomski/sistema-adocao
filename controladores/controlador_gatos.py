@@ -35,9 +35,7 @@ class ControladorGatos:
         if tam_lista_gatos > 0:
             for gato in self.__gatos:
                 self.__tela_gato.mostra_gato(
-                    {"numero_chip": gato.num_chip, "nome": gato.nome, "raca": gato.raca})
-                    # como listar historicos? apenas no controlador de historicos?
-                #controlador de cachorrs tem o controlador de sistemas para conseguirmos listar os historicos
+                    {"numero_chip": gato.num_chip, "nome": gato.nome, "raca": gato.raca, "historico":gato.listar_vacinas_historico()})
         else:
             self.__tela_gato.mostra_mensagem(
                 "ERRO: Não existe nenhum gato cadastrado no sistema.")

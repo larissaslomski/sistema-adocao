@@ -10,13 +10,13 @@ class ControladorRegistrosDoacao():
         self.__registros_doacao = []
         self.__tela_registro_doacao = TelaRegistroDoacao()
 
-    def pega_registro_adocao_por_codigo(self, codigo: int):
+    def pega_registro_doacao_por_codigo(self, codigo: int):
         for registro_adocao in self.__registros_doacao:
             if registro_adocao.codigo_registro == codigo:
                 return registro_adocao
         return None
 
-    def incluir_registro_adocao(self):
+    def incluir_registro_doacao(self):
         cachorro_ou_gato = self.__tela_registro_doacao.seleciona_cachorro_ou_gato()
         while True:
             if cachorro_ou_gato not in (1, 2):
@@ -25,23 +25,23 @@ class ControladorRegistrosDoacao():
             else:
                 break
         if cachorro_ou_gato == 1:
-            self.__tela_registro_doacao.mostra_mensagem("Precisamos do CPF do adotante e o número do chip do cachorro e o motivo da doação:")
             self.__controlador_sistema.controlador_cachorros.listar_cachorros()
             self.__controlador_sistema.controlador_adotantes.listar_adotantes()
+            self.__tela_registro_doacao.mostra_mensagem("Precisamos do CPF do doador, o número do chip do cachorro e o motivo da doação:")
             dados_registro_doacao = self.__tela_registro_doacao.pega_dados_registro_doacao()
-            motivo = dados_registro_doacao["motivo"]
             adotante = self.__controlador_sistema.controlador_adotantes.pega_adotante_por_cpf(dados_registro_doacao["cpf"])
             cachorro = self.__controlador_sistema.controlador_cachorros.pega_cachorro_por_num_chip(dados_registro_doacao["numero_chip"])
             if adotante is not None and cachorro is not None:
                 codigo_registro = uuid4().int
                 data = date.today()
-                registro_doacao = RegistroDoacao(codigo_registro, data, cachorro, adotante, motivo)
+                registro_doacao = RegistroDoacao(codigo_registro, data, cachorro, adotante, dados_registro_doacao["motivo"])
                 self.__registros_doacao.append(registro_doacao)
                 self.__tela_registro_doacao.mostra_mensagem(f"Inclusão de registro de doação realizada com sucesso")
             else:
-                self.__tela_registro_doacao.mostra_mensagem("Não há nenhum cachorro cadastrado disponível para doação")
+                self.__tela_registro_doacao.mostra_mensagem("Informações de doador ou chip animal invalidas, tente novamente.")
+                #fazer while verificação
         elif cachorro_ou_gato == 2:
-            self.__tela_registro_doacao.mostra_mensagem("Precisamos do CPF do adotante e o número do chip do gato:")
+            self.__tela_registro_doacao.mostra_mensagem("Precisamos do CPF do doador e o número do chip do gato:")
             self.__controlador_sistema.controlador_gatos.listar_gatos()
             self.__controlador_sistema.controlador_adotantes.listar_adotantes()
             dados_registro_doacao = self.__tela_registro_doacao.pega_dados_registro_doacao()
@@ -55,36 +55,37 @@ class ControladorRegistrosDoacao():
                 self.__registros_doacao.append(registro_doacao)
                 self.__tela_registro_doacao.mostra_mensagem(f"Inclusão de registro de doação realizada com sucesso")
             else:
-                self.__tela_registro_doacao.mostra_mensagem("Não há nenhum gato cadastrado disponível para doação")
+                self.__tela_registro_doacao.mostra_mensagem("Informações de doador ou chip animal invalidas, tente novamente.")
+                #fazer while verificação
 
-    def listar_registro_adocao(self):
-        for registro_adocao in self.__registros_doacao:
+    def listar_registro_doacao(self):
+        for registro_doacao in self.__registros_doacao:
             #inserir animalfazer metodo abstrato em animal
-            self.__tela_registro_doacao.mostra_registro_doacao({"codigo_registro": registro_adocao.codigo_registro,
-                                                      "data": registro_adocao.data,
-                                                      "cpf_adotante": registro_adocao.adotante.cpf,
-                                                      "termo_responsabilidade": registro_adocao.termo_responsabilidade})
+            self.__tela_registro_doacao.mostra_registro_doacao({"codigo_registro": registro_doacao.codigo_registro,
+                                                      "data": registro_doacao.data,
+                                                      "cpf_adotante": registro_doacao.adotante.cpf,
+                                                      "termo_responsabilidade": registro_doacao.termo_responsabilidade})
 
-    def excluir_registro_adocao(self):
-        self.listar_registro_adocao()
-        codigo_registro_adocao = self.__tela_registro_doacao.seleciona_registro_adocao()
-        registro_adocao = self.pega_registro_adocao_por_codigo(int(codigo_registro_adocao))
+    def excluir_registro_doacao(self):
+        self.listar_registro_doacao()
+        codigo_registro_doacao = self.__tela_registro_doacao.seleciona_registro_doacao()
+        registro_doacao = self.pega_registro_doacao_por_codigo(int(codigo_registro_doacao))
 
-        if registro_adocao is not None:
-            self.__registros_doacao.remove(registro_adocao)
-            self.__tela_registro_doacao.mostra_mensagem(f"Registro de doação com código {codigo_registro_adocao} removido com sucesso.")
-            self.listar_registro_adocao()
+        if registro_doacao is not None:
+            self.__registros_doacao.remove(registro_doacao)
+            self.__tela_registro_doacao.mostra_mensagem(f"Registro de doação com código {codigo_registro_doacao} removido com sucesso.")
+            self.listar_registro_doacao()
         else:
             self.__tela_registro_doacao.mostra_mensagem("ATENCAO: Codigo de registro não existente")
 
-    def alterar_registro_adocao(self):
+    def alterar_registro_doacao(self):
         pass
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_registro_adocao, 2: self.listar_registro_adocao, 3: self.excluir_registro_adocao, 4: self.alterar_registro_adocao,
+        lista_opcoes = {1: self.incluir_registro_doacao(), 2: self.listar_registro_doacao(), 3: self.excluir_registro_doacao(), 4: self.alterar_registro_doacao(),
                         0: self.retornar}
 
         continua = True

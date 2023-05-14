@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from entidades.historico_vacinacao import HistoricoVacinacao
 import uuid
 
 
@@ -7,14 +6,17 @@ class Animal(ABC):
     #incluir historico vacinacao no init
     @abstractmethod
     def __init__(self, num_chip: int, nome: str, raca: str):
+        self.__historicos_vacinacao = []
         if isinstance(num_chip, int):
             self.__num_chip = num_chip
         if isinstance(nome, str):
             self.__nome = nome
         if isinstance(raca, str):
             self.__raca = raca
-        # if isinstance(historico_vacinacao, HistoricoVacinacao):
-        #     self.__historico_vacinacao = historico_vacinacao
+
+    @property
+    def historicos_vacinacao(self):
+        return self.__historicos_vacinacao
 
     @property
     def num_chip(self):
@@ -27,10 +29,6 @@ class Animal(ABC):
     @property
     def raca(self):
         return self.__raca
-
-    # @property
-    # def historico_vacinacao(self):
-    #     return self.__historico_vacinacao
 
     # @num_chip.setter
     # def num_chip(self, num_chip):
@@ -47,7 +45,12 @@ class Animal(ABC):
         if isinstance(raca, str):
             self.__raca = raca
 
-    # @historico_vacinacao.setter
-    # def historico_vacinacao(self, historico_vacinacao):
-    #     if isinstance(historico_vacinacao, HistoricoVacinacao):
-    #         self.__historico_vacinacao = historico_vacinacao
+    @historicos_vacinacao.setter
+    def historico_vacinacao(self, historico_vacinacao):
+            self.__historicos_vacinacao.append(historico_vacinacao)
+
+    def listar_vacinas_historico(self):
+        lista_historico = []
+        for historico_vacinacao in self.__historicos_vacinacao:
+            lista_historico.append(historico_vacinacao.vacina.nome_vacina)
+        return lista_historico
