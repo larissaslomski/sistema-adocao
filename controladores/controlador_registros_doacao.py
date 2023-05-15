@@ -11,11 +11,16 @@ class ControladorRegistrosDoacao():
         self.__tela_registro_doacao = TelaRegistroDoacao()
 
     def pega_registro_doacao_por_codigo(self, codigo: int):
-        for registro_adocao in self.__registros_doacao:
-            if registro_adocao.codigo_registro == codigo:
-                return registro_adocao
+        for registro_doacao in self.__registros_doacao:
+            if registro_doacao.codigo_registro == codigo:
+                return registro_doacao
         return None
 
+    def pega_registro_doacao_por_doador(self, doador):
+        for registro_doacao in self.__registros_doacao:
+            if registro_doacao.doador.cpf == doador.cpf:
+                return registro_doacao
+        return None
     def incluir_registro_doacao(self):
         cachorro_ou_gato = self.__tela_registro_doacao.seleciona_cachorro_ou_gato()
         while True:

@@ -16,6 +16,13 @@ class HistoricoVacinacao:
     def vacina(self):
         return self.__vacina
 
+    @property
+    def animal(self):
+        return self.__animal
+
+    @property
+    def data(self):
+        return self.__data
     @vacina.setter
     def vacina(self, vacina):
         if isinstance(vacina, Vacina):

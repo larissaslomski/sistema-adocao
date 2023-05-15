@@ -3,8 +3,8 @@ class TelaHistoricoVacinacao():
         print("------- HISTÓRICO VACINAÇÃO --------")
         print("Escolha a opcao")
         print("1 - Incluir histórico de vacinação")
-        print("2 - Alterar histórico de vacinação")
-        print("3 - Listar históricos de vacinação")
+        print("2 - Listar históricos de vacinação")
+        print("3 - Alterar históricos de vacinação")
         print("4 - Excluir histórico de vacinação")
         print("0 - Retornar")
 
@@ -26,6 +26,7 @@ class TelaHistoricoVacinacao():
 
     def mostra_historico_vacinacao(self, dados_historico_vacinacao):
         print("DATA VACINACAO: ", dados_historico_vacinacao["data"])
+        print("ANIMAL: ", dados_historico_vacinacao["animal"])
         print("NOME DA VACINA: ", dados_historico_vacinacao["vacina"])
         print("\n")
 

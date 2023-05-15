@@ -36,6 +36,7 @@ class ControladorHistoricoVacinacao():
                 historico_vacinacao = HistoricoVacinacao(
                     data, cachorro, vacina)
                 cachorro.historicos_vacinacao.append(historico_vacinacao)
+                self.__historicos_vacinacao.append(historico_vacinacao)
             else:
                 self.__tela_historico_vacinacao.mostra_mensagem(f"Não há nenhum cachorro cadastrado com numero chip: "
                                                                 f"{dados_historico_vacinacao['numero_chip_animal']} para vacinar")
@@ -49,6 +50,7 @@ class ControladorHistoricoVacinacao():
                 data = date.today()
                 historico_vacinacao = HistoricoVacinacao(data, gato, vacina)
                 gato.historicos_vacinacao.append(historico_vacinacao)
+                self.__historicos_vacinacao.append(historico_vacinacao)
             else:
                 self.__tela_historico_vacinacao.mostra_mensagem(f"Não há nenhum gato cadastrado com numero chip: "
                                                                 f"{dados_historico_vacinacao['numero_chip_animal']} para vacinar")
@@ -57,6 +59,7 @@ class ControladorHistoricoVacinacao():
         for historico_vacinacao in self.__historicos_vacinacao:
             # fazer metodo abstrato para mostrar animal
             self.__tela_historico_vacinacao.mostra_historico_vacinacao({"data": historico_vacinacao.data,
+                                                                        "animal": historico_vacinacao.animal.nome,
                                                                         "vacina": historico_vacinacao.vacina.nome_vacina})
 
     def excluir_historico_vacinacao(self):
@@ -79,7 +82,7 @@ class ControladorHistoricoVacinacao():
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_historico_vacinacao(), 2: self.listar_historico_vacinacao(), 3: self.alterar_registro_adocao(), 4: self.excluir_historico_vacinacao(),
+        lista_opcoes = {1: self.incluir_historico_vacinacao, 2: self.listar_historico_vacinacao, 3: self.alterar_registro_adocao, 4: self.excluir_historico_vacinacao,
                         0: self.retornar}
 
         continua = True

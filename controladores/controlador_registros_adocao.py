@@ -17,6 +17,19 @@ class ControladorRegistrosAdocao():
                 return registro_adocao
         return None
 
+    def verifica_se_nao_doou(self, adotante):
+        if self.__controlador_sistema.controlador_registros_doacao.pega_registro_doacao_por_doador(adotante) is None:
+            return True
+        else:
+            return False
+
+    def verifica_vacinas(self, animal):
+        quantidade_vacina = len(animal.historicos_vacinacao)
+        if quantidade_vacina == 3:
+            return True
+        else:
+            return False
+
     def verifica_maior_idade(self, data_nascimento):
         data_atual = datetime.now().date()
         idade_minima = 18
@@ -33,8 +46,6 @@ class ControladorRegistrosAdocao():
         except ValueError:
             self.__tela_registro_adocao.mostra_mensagem(
                 "Formato de data inválido. Utilize o formato dd/mm/aaaa.")
-
-    def verifica_vacinas(self):
 
     def incluir_registro_adocao(self):
         cachorro_ou_gato = self.__tela_registro_adocao.seleciona_cachorro_ou_gato()
@@ -58,14 +69,25 @@ class ControladorRegistrosAdocao():
             if adotante is not None and cachorro is not None:
                 maior_idade = self.verifica_maior_idade(
                     adotante.nascimento)
+                tomou_vacinas = self.verifica_vacinas(cachorro)
+                nao_doou = self.verifica_se_nao_doou(adotante)
                 if maior_idade:
-                    codigo_registro = uuid4().int
-                    data = date.today()
-                    registro_adocao = RegistroAdocao(
-                        codigo_registro, data, cachorro, adotante, False)
-                    self.__registros_adocao.append(registro_adocao)
-                    self.__tela_registro_adocao.mostra_mensagem(
-                        f"Inclusão de registro de adoção realizada com sucesso")
+                    if tomou_vacinas:
+                        if nao_doou:
+                            codigo_registro = uuid4().int
+                            data = date.today()
+                            registro_adocao = RegistroAdocao(
+                                codigo_registro, data, cachorro, adotante, False)
+                            self.__registros_adocao.append(registro_adocao)
+                            self.__tela_registro_adocao.mostra_mensagem(
+                                f"Inclusão de registro de adoção realizada com sucesso")
+                        else:
+                            self.__tela_registro_adocao.mostra_mensagem(
+                                f"O adotante já foi um doador")
+                    else:
+                        self.__tela_registro_adocao.mostra_mensagem(
+                            f"ATENÇAO: O animal não tem as três vacinas necessárias.")
+                        self.retornar()
                 else:
                     self.__tela_registro_adocao.mostra_mensagem(
                         f"ATENÇAO: Somente maiores de idade podem adotar.")
@@ -86,14 +108,25 @@ class ControladorRegistrosAdocao():
             if adotante is not None and gato is not None:
                 maior_idade = self.verifica_maior_idade(
                     adotante.nascimento)
+                tomou_vacinas = self.verifica_vacinas(gato)
+                nao_doou = self.verifica_se_nao_doou(adotante)
                 if maior_idade:
-                    codigo_registro = uuid4().int
-                    data = date.today()
-                    registro_adocao = RegistroAdocao(
-                        codigo_registro, data, gato, adotante, False)
-                    self.__registros_adocao.append(registro_adocao)
-                    self.__tela_registro_adocao.mostra_mensagem(
-                        f"Inclusão de registro de adoção realizada com sucesso")
+                    if tomou_vacinas:
+                        if nao_doou:
+                            codigo_registro = uuid4().int
+                            data = date.today()
+                            registro_adocao = RegistroAdocao(
+                                codigo_registro, data, gato, adotante, False)
+                            self.__registros_adocao.append(registro_adocao)
+                            self.__tela_registro_adocao.mostra_mensagem(
+                                f"Inclusão de registro de adoção realizada com sucesso")
+                        else:
+                            self.__tela_registro_adocao.mostra_mensagem(
+                                f"O adotante já foi um doador")
+                    else:
+                        self.__tela_registro_adocao.mostra_mensagem(
+                            f"ATENÇAO: O animal não tem as três vacinas necessárias.")
+                        self.retornar()
                 else:
                     self.__tela_registro_adocao.mostra_mensagem(
                         f"ATENÇAO: Somente maiores de idade podem adotar.")
