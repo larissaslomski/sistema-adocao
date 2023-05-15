@@ -9,6 +9,10 @@ class ControladorCachorros:
         self.__tela_cachorro = TelaCachorro()
         self.__controlador_sistema = controlador_sistema
 
+    @property
+    def cachorros(self):
+        return self.__cachorros
+
     def pega_cachorro_por_num_chip(self, num_chip: int):
         for cachorro in self.__cachorros:
             if (cachorro.num_chip == num_chip):
@@ -21,19 +25,18 @@ class ControladorCachorros:
         tamanho = self.__tela_cachorro.tamanho_cachorro()
         while True:
             if tamanho.upper() not in ('P', 'M', 'G'):
-                self.__tela_cachorro.mostra_mensagem("Informação inválida, selecione P, M ou G")
+                self.__tela_cachorro.mostra_mensagem(
+                    "Informação inválida, selecione P, M ou G")
                 tamanho = self.__tela_cachorro.tamanho_cachorro()
             else:
                 break
         dados_cachorro["tamanho"] = tamanho.upper()
-        cachorro = Cachorro(numero_chip, dados_cachorro["nome"], dados_cachorro["raca"], dados_cachorro["tamanho"])
+        cachorro = Cachorro(
+            numero_chip, dados_cachorro["nome"], dados_cachorro["raca"], dados_cachorro["tamanho"])
         dados_cachorro["numero_chip"] = numero_chip
         self.__cachorros.append(cachorro)
         self.__tela_cachorro.mostra_mensagem(
             "Animal cadastrado com sucesso no Sistema.")
-        # else:
-        #     self.__tela_cachorro.mostra_mensagem(
-        #         "ERRO: o Animal ja esta cadastrado no Sistema.")
 
     def listar_cachorros(self):
         tam_lista_cachorros = len(self.__cachorros)
@@ -57,7 +60,8 @@ class ControladorCachorros:
             tamanho = self.__tela_cachorro.tamanho_cachorro()
             while True:
                 if tamanho.upper() not in ('P', 'M', 'G'):
-                    self.__tela_cachorro.mostra_mensagem("Informação inválida, selecione P, M ou G")
+                    self.__tela_cachorro.mostra_mensagem(
+                        "Informação inválida, selecione P, M ou G")
                     tamanho = self.__tela_cachorro.tamanho_cachorro()
                 else:
                     break
@@ -65,10 +69,8 @@ class ControladorCachorros:
             cachorro.nome = novos_dados_cachorro["nome"]
             cachorro.raca = novos_dados_cachorro["raca"]
             cachorro.tamanho = novos_dados_cachorro["tamanho"]
-            # num_chip é fixo (?) resposta: vou considerar q sim
-            # historico_vacinacao só pode ser alterado na sua tela (?)
-            self.__tela_cachorro.mostra_mensagem("Dados do cachorro alterados com sucesso.")
-            # self.listar_cachorros()
+            self.__tela_cachorro.mostra_mensagem(
+                "Dados do cachorro alterados com sucesso.")
         else:
             self.__tela_cachorro.mostra_mensagem(
                 "ERRO: O cachorro não existe.")
@@ -100,6 +102,11 @@ class ControladorCachorros:
         lista_opcoes = {1: self.incluir_cachorro, 2: self.alterar_cachorro,
                         3: self.listar_cachorros, 4: self.excluir_cachorro, 0: self.retornar}
 
-        continua = True
-        while continua:
-            lista_opcoes[self.__tela_cachorro.tela_opcoes()]()
+        while True:
+            opcao_escolhida = self.__tela_cachorro.tela_opcoes()
+            while opcao_escolhida not in (1, 2, 3, 4, 0):
+                self.__tela_cachorro.mostra_mensagem(
+                    "ERRO: Opção inválida, tente novamente.")
+                opcao_escolhida = self.__tela_cachorro.tela_opcoes()
+            funcao_escolhida = lista_opcoes[opcao_escolhida]
+            funcao_escolhida()

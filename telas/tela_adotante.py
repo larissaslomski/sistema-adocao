@@ -1,6 +1,6 @@
 class TelaAdotante():
     def tela_opcoes(self):
-        print("-------ADOTANTE--------")
+        print("-------- ADOTANTE --------")
         print("Escolha a opcao")
         print("1 - Incluir adotante")
         print("2 - Alterar adotante")
@@ -13,7 +13,7 @@ class TelaAdotante():
 
     def pega_data_nascimento_adotante(self):
         dia_nascimento = input("Dia de nascimento com dois dígitos: ")
-        mes_nascimento = input("Mês de nascimento: ")
+        mes_nascimento = input("Mês de nascimento com dois dígitos:: ")
         ano_nascimento = input("Ano de nascimento com quatro dígitos: ")
         data_nascimento = (
             f"{dia_nascimento}/{mes_nascimento}/{ano_nascimento}")
@@ -31,7 +31,7 @@ class TelaAdotante():
     def pega_dados_adotante_alt(self):
         print("-------- DADOS ADOTANTE --------")
         nome = input("Nome: ")
-        nascimento = input("Data de nascimento: ")
+        nascimento = self.pega_data_nascimento_adotante()
         endereco = input("Endereço: ")
         tem_outros_animais = input("Possui outros animais?(S/N) ")
         return {"nome": nome, "nascimento": nascimento, "endereco": endereco,
@@ -39,14 +39,12 @@ class TelaAdotante():
 
     def mostra_adotante(self, dados_adotante):
         print("------------------------------------")
-        print("\n")
         print("CPF DO ADOTANTE: ", dados_adotante["cpf"])
         print("NOME DO ADOTANTE: ", dados_adotante["nome"])
         print("DATA DE NASCIMENTO DO ADOTANTE: ", dados_adotante["nascimento"])
         print("ENDERECO DO ADOTANTE: ", dados_adotante["endereco"])
         print("OUTROS ANIMAIS: ", dados_adotante["tem_outros_animais"])
         print("TIPO DE HABITACAO: ", dados_adotante["tipo_habitacao"])
-        print("\n")
 
     def seleciona_adotante(self):
         cpf = input("CPF do adotante que deseja selecionar: ")

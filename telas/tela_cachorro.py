@@ -1,6 +1,6 @@
 class TelaCachorro():
     def tela_opcoes(self):
-        print("-------CACHORRO --------")
+        print("-------- CACHORRO --------")
         print("1 - Incluir cachorro")
         print("2 - Alterar cachorro")
         print("3 - Listar cachorros")
@@ -11,7 +11,7 @@ class TelaCachorro():
         return opcao
 
     def tamanho_cachorro(self):
-        print("------- TAMANHO CACHORRO --------")
+        print("-------- TAMANHO CACHORRO --------")
         print("P - Cachorro pequeno")
         print("M - Cachorro médio")
         print("G - Cachorro grande")
@@ -19,19 +19,18 @@ class TelaCachorro():
         return opcao
 
     def pega_dados_cachorro(self):
-        print("-------- DADOS CACHORRO ----------")
+        print("-------- DADOS CACHORRO --------")
         nome = input("Nome: ")
         raca = input("Raça: ")
         return {"nome": nome, "raca": raca}
 
     def mostra_cachorro(self, dados_cachorro):
-
+        print("------------------------------------")
         print("NOME DO CACHORRO: ", dados_cachorro["nome"])
         print("RAÇA DO CACHORRO: ", dados_cachorro["raca"])
         print("TAMANHO DO CACHORRO: ", dados_cachorro["tamanho"])
         print("NUMERO CHIP DO CACHORRO: ", dados_cachorro["numero_chip"])
         print("HISTÓRICO DE VACINAÇÃO DO CACHORRO: ", dados_cachorro["historico"])
-        print("\n")
 
     def seleciona_cachorro(self):
         numero_chip = int(input("Numero do chip do cachorro que deseja selecionar: "))

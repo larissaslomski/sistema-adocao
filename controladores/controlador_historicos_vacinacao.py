@@ -57,34 +57,22 @@ class ControladorHistoricoVacinacao():
 
     def listar_historico_vacinacao(self):
         for historico_vacinacao in self.__historicos_vacinacao:
-            # fazer metodo abstrato para mostrar animal
             self.__tela_historico_vacinacao.mostra_historico_vacinacao({"data": historico_vacinacao.data,
                                                                         "animal": historico_vacinacao.animal.nome,
                                                                         "vacina": historico_vacinacao.vacina.nome_vacina})
-
-    def excluir_historico_vacinacao(self):
-        pass
-        # self.listar_historico_vacinacao()
-        # codigo_registro_adocao = self.__tela_registro_adocao.seleciona_registro_adocao()
-        # registro_adocao = self.pega_registro_adocao_por_codigo(int(codigo_registro_adocao))
-        #
-        # if registro_adocao is not None:
-        #     self.__registros_adocao.remove(registro_adocao)
-        #     self.__tela_registro_adocao.mostra_mensagem(f"Registro de adoção com código {codigo_registro_adocao} removido com sucesso.")
-        #     self.listar_registro_adocao()
-        # else:
-        #     self.__tela_registro_adocao.mostra_mensagem("ATENCAO: Codigo de registro não existente")
-
-    def alterar_registro_adocao(self):
-        pass
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_historico_vacinacao, 2: self.listar_historico_vacinacao, 3: self.alterar_registro_adocao, 4: self.excluir_historico_vacinacao,
-                        0: self.retornar}
+        lista_opcoes = {1: self.incluir_historico_vacinacao,
+                        2: self.listar_historico_vacinacao, 0: self.retornar}
 
-        continua = True
-        while continua:
-            lista_opcoes[self.__tela_historico_vacinacao.tela_opcoes()]()
+        while True:
+            opcao_escolhida = self.__tela_historico_vacinacao.tela_opcoes()
+            while opcao_escolhida not in (1, 2, 0):
+                self.__tela_historico_vacinacao.mostra_mensagem(
+                    "ERRO: Opção inválida, tente novamente.")
+                opcao_escolhida = self.__tela_historico_vacinacao.tela_opcoes()
+            funcao_escolhida = lista_opcoes[opcao_escolhida]
+            funcao_escolhida()

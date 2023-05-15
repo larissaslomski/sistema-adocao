@@ -1,7 +1,6 @@
 class TelaSistema:
-    #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def tela_opcoes(self):
-        print("-------- SISTEMA ADOÇÃO DE ANIMAIS ---------")
+        print("-------- SISTEMA ADOÇÃO DE ANIMAIS --------")
         print("Escolha sua opção")
         print("1 - Menu adotante")
         print("2 - Menu doador")
@@ -10,7 +9,6 @@ class TelaSistema:
         print("5 - Menu registro de adoção")
         print("6 - Menu registro de doação")
         print("7 - Menu histórico de vacinação")
-        # print("8 - Menu vacinas")
         print("0 - Finalizar sistema")
         opcao = int(input("Escolha a opcao: "))
         return opcao

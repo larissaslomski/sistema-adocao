@@ -1,11 +1,9 @@
 class TelaHistoricoVacinacao():
     def tela_opcoes(self):
-        print("------- HISTÓRICO VACINAÇÃO --------")
+        print("-------- HISTÓRICO VACINAÇÃO --------")
         print("Escolha a opcao")
         print("1 - Incluir histórico de vacinação")
         print("2 - Listar históricos de vacinação")
-        print("3 - Alterar históricos de vacinação")
-        print("4 - Excluir histórico de vacinação")
         print("0 - Retornar")
 
         opcao = int(input("Escolha a opção: "))
@@ -19,7 +17,7 @@ class TelaHistoricoVacinacao():
         return opcao
 
     def pega_dados_historico(self):
-        print("------- HISTÓRICO VACINAÇÃO --------")
+        print("-------- HISTÓRICO VACINAÇÃO --------")
         numero_chip_animal = int(
             input("Digite o número do chip do animal vacinado: "))
         return {"numero_chip_animal": numero_chip_animal}

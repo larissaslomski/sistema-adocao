@@ -31,14 +31,14 @@ class ControladorAdotantes:
                     dados_adotante["endereco"], tem_outros_animais, tipo_habitacao)
                 self.__adotantes.append(adotante)
                 self.__tela_adotante.mostra_mensagem(
-                    "Adotante cadastrado com sucesso no sistema")
+                    "Adotante cadastrado com sucesso no sistema.")
             else:
                 self.__tela_adotante.mostra_mensagem(
-                    "ERRO: informações inválidas, digite novamente os dados:")
+                    "ERRO: Informações inválidas, digite novamente os dados:")
                 self.__tela_adotante.pega_dados_adotante()  # nao seria necessario um while(?)
         else:
             self.__tela_adotante.mostra_mensagem(
-                "ERRO: o Adotante ja esta cadastrado no Sistema.")
+                "ERRO: O Adotante ja esta cadastrado no Sistema.")
 
     def listar_adotantes(self):
         tam_lista_adotantes = len(self.__adotantes)
@@ -48,7 +48,7 @@ class ControladorAdotantes:
                     {"cpf": adotante.cpf, "nome": adotante.nome, "nascimento": adotante.nascimento, "endereco": adotante.endereco, "tem_outros_animais": adotante.tem_outros_animais, "tipo_habitacao": adotante.tipo_habitacao})
         else:
             self.__tela_adotante.mostra_mensagem(
-                "ERRO: Não existe nenhum adotante cadastrado no Sistema.")
+                "ERRO: Não existe nenhum Adotante cadastrado no Sistema.")
             self.__controlador_sistema.abre_tela()
 
     def alterar_adotante(self):
@@ -64,6 +64,8 @@ class ControladorAdotantes:
             adotante.endereco = novos_dados_adotante["endereco"]
             adotante.tem_outros_animais = novos_dados_adotante["tem_outros_animais"]
             adotante.tipo_habitacao = novo_tipo_habitacao
+            self.__tela_adotante.mostra_mensagem(
+                "Dados do Adotante alterados com sucesso.")
             self.listar_adotantes()
         else:
             self.__tela_adotante.mostra_mensagem(
@@ -94,7 +96,11 @@ class ControladorAdotantes:
     def abre_tela(self):
         lista_opcoes = {1: self.incluir_adotante, 2: self.alterar_adotante,
                         3: self.listar_adotantes, 4: self.excluir_adotante, 0: self.retornar}
-
-        continua = True
-        while continua:
-            lista_opcoes[self.__tela_adotante.tela_opcoes()]()
+        while True:
+            opcao_escolhida = self.__tela_adotante.tela_opcoes()
+            while opcao_escolhida not in (1, 2, 3, 4, 0):
+                self.__tela_adotante.mostra_mensagem(
+                    "ERRO: Opção inválida, tente novamente.")
+                opcao_escolhida = self.__tela_adotante.tela_opcoes()
+            funcao_escolhida = lista_opcoes[opcao_escolhida]
+            funcao_escolhida()

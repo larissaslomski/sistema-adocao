@@ -3,13 +3,12 @@ from datetime import date
 
 class TelaRegistroAdocao():
     def tela_opcoes(self):
-        print("-------REGISTRO DE ADOÇÃO--------")
+        print("-------- REGISTRO DE ADOÇÃO --------")
         print("Escolha a opcao")
         print("1 - Incluir registro de adoção")
         print("2 - Listar registros de adoção")
         print("3 - Excluir registro de adoção")
-        print("4 - Alterar registro de adoção")
-        print("5 - Gerar relatório de adoção")
+        print("4 - Gerar relatório de adoção")
         print("0 - Retornar")
 
         opcao = int(input("Escolha a opcao: "))
@@ -23,7 +22,7 @@ class TelaRegistroAdocao():
         return opcao
 
     def pega_dados_registro_adocao(self):
-        print("-------- DADOS REGISTRO DE ADOÇÃO ----------")
+        print("-------- DADOS REGISTRO DE ADOÇÃO --------")
         cpf_adotante = input("Cpf do adotante: ")
         numero_chip_animal = int(input("Numero do chip do animal: "))
         return {"cpf": cpf_adotante, "numero_chip": numero_chip_animal}
@@ -43,7 +42,7 @@ class TelaRegistroAdocao():
         registro = int(input("Código do registro que deseja selecionar: "))
         return registro
 
-    def assina_termo_responsabilidade(self):
+    def pega_assinatura_termo_responsabilidade(self):
         assinatura = input("Assinar termo de responsabilidade?(S/N) ")
         return assinatura
 

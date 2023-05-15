@@ -56,9 +56,6 @@ class ControladorSistema():
     def inicia_sistema(self):
         self.abre_tela()
 
-    def cadastra_vacinas(self):
-        self.__controlador_vacinas.abre_tela()
-
     # 1 - Abre a tela de cadastro de Adotantes
     def cadastra_adotantes(self):
         self.__controlador_adotantes.abre_tela()
@@ -99,7 +96,7 @@ class ControladorSistema():
 
         while True:
             opcao_escolhida = self.__tela_sistema.tela_opcoes()
-            while opcao_escolhida not in (1, 2, 3, 4, 5, 6, 7, 8, 0):
+            while opcao_escolhida not in (1, 2, 3, 4, 5, 6, 7, 0):
                 self.__tela_sistema.mostra_mensagem(
                     "ERRO: Opção inválida, tente novamente.")
                 opcao_escolhida = self.__tela_sistema.tela_opcoes()
