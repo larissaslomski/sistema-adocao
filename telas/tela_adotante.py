@@ -14,7 +14,7 @@ class TelaAdotante():
     def pega_data_nascimento_adotante(self):
         print("-------- DADOS NASCIMENTO DO ADOTANTE --------")
         ano_nascimento = input("Ano de nascimento com quatro dígitos: ")
-        mes_nascimento = input("Mês de nascimento com dois dígitos: ")
+        mes_nascimento = input("Mês de nascimento: ")
         dia_nascimento = input("Dia de nascimento com dois dígitos: ")
         return ano_nascimento, dia_nascimento, mes_nascimento
 

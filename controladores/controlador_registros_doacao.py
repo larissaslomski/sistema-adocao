@@ -78,14 +78,13 @@ class ControladorRegistrosDoacao():
         else:
             self.__tela_registro_doacao.mostra_mensagem("ATENCAO: Codigo de registro não existente")
 
-    def alterar_registro_doacao(self):
-        pass
+
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_registro_doacao(), 2: self.listar_registro_doacao(), 3: self.excluir_registro_doacao(), 4: self.alterar_registro_doacao(),
+        lista_opcoes = {1: self.incluir_registro_doacao, 2: self.listar_registro_doacao, 3: self.excluir_registro_doacao,
                         0: self.retornar}
 
         continua = True
