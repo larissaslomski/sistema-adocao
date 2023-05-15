@@ -20,7 +20,8 @@ class ControladorHistoricoVacinacao():
         cachorro_ou_gato = self.__tela_historico_vacinacao.seleciona_cachorro_ou_gato()
         while True:
             if cachorro_ou_gato not in (1, 2):
-                self.__tela_historico_vacinacao.mostra_mensagem("Opção inválida! Selecione 1 ou 2!")
+                self.__tela_historico_vacinacao.mostra_mensagem(
+                    "Opção inválida! Selecione 1 ou 2!")
                 cachorro_ou_gato = self.__tela_historico_vacinacao.seleciona_cachorro_ou_gato()
             else:
                 break
@@ -29,11 +30,13 @@ class ControladorHistoricoVacinacao():
             self.__controlador_sistema.controlador_cachorros.listar_cachorros()
             self.__controlador_sistema.controlador_vacinas.listar_vacina()
             dados_historico_vacinacao = self.__tela_historico_vacinacao.pega_dados_historico()
-            cachorro = self.__controlador_sistema.controlador_cachorros.pega_cachorro_por_num_chip(dados_historico_vacinacao["numero_chip_animal"])
-            vacina = self.__controlador_sistema.controlador_vacinas.pega_vacina_por_nome(dados_historico_vacinacao["nome_vacina"])
+            cachorro = self.__controlador_sistema.controlador_cachorros.pega_cachorro_por_num_chip(
+                dados_historico_vacinacao["numero_chip_animal"])
+            vacina = self.__controlador_sistema.controlador_vacinas.incluir_vacina()
             if cachorro is not None and vacina is not None:
                 data = date.today()
-                historico_vacinacao = HistoricoVacinacao(data, cachorro, vacina)
+                historico_vacinacao = HistoricoVacinacao(
+                    data, cachorro, vacina)
                 cachorro.historicos_vacinacao.append(historico_vacinacao)
             else:
                 self.__tela_historico_vacinacao.mostra_mensagem(f"Não há nenhum cachorro cadastrado com numero chip: "
@@ -43,8 +46,10 @@ class ControladorHistoricoVacinacao():
             self.__controlador_sistema.controlador_gatos.listar_gatos()
             self.__controlador_sistema.controlador_vacinas.listar_vacina()
             dados_historico_vacinacao = self.__tela_historico_vacinacao.pega_dados_historico()
-            vacina = self.__controlador_sistema.controlador_vacinas.pega_vacina_por_nome(dados_historico_vacinacao["nome_vacina"])
-            gato = self.__controlador_sistema.controlador_gatos.pega_gato_por_num_chip(dados_historico_vacinacao["numero_chip_animal"])
+            vacina = self.__controlador_sistema.controlador_vacinas.pega_vacina_por_nome(
+                dados_historico_vacinacao["nome_vacina"])
+            gato = self.__controlador_sistema.controlador_gatos.pega_gato_por_num_chip(
+                dados_historico_vacinacao["numero_chip_animal"])
             if gato is not None and vacina is not None:
                 data = date.today()
                 historico_vacinacao = HistoricoVacinacao(data, gato, vacina)
@@ -55,9 +60,9 @@ class ControladorHistoricoVacinacao():
 
     def listar_historico_vacinacao(self):
         for historico_vacinacao in self.__historicos_vacinacao:
-            #fazer metodo abstrato para mostrar animal
+            # fazer metodo abstrato para mostrar animal
             self.__tela_historico_vacinacao.mostra_historico_vacinacao({"data": historico_vacinacao.data,
-                                              "vacina": historico_vacinacao.vacina.nome_vacina})
+                                                                        "vacina": historico_vacinacao.vacina.nome_vacina})
 
     def excluir_historico_vacinacao(self):
         pass

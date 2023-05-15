@@ -82,13 +82,16 @@ class ControladorCachorros:
 
         if (cachorro is not None):
             self.__cachorros.remove(cachorro)
-            self.__tela_cachorro.mostra_mensagem(f"O cachorro de numero chip: {num_chip} foi excluido do sistema")
+            self.__tela_cachorro.mostra_mensagem(
+                f"O cachorro de numero chip: {num_chip} foi excluido do sistema")
             if len(self.__cachorros) == 0:
-                self.__tela_cachorro.mostra_mensagem("Não existe mais nenhum cachorro cadastrado no sistema")
+                self.__tela_cachorro.mostra_mensagem(
+                    "Não existe mais nenhum cachorro cadastrado no sistema")
             else:
                 self.__tela_cachorro.tela_opcoes()
         else:
-            self.__tela_cachorro.mostra_mensagem("ERRO: O Cachorro não existe.")
+            self.__tela_cachorro.mostra_mensagem(
+                "ERRO: O Cachorro não existe.")
             self.__tela_cachorro.tela_opcoes()
 
     def retornar(self):

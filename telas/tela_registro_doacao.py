@@ -1,4 +1,6 @@
 from datetime import date
+
+
 class TelaRegistroDoacao():
     def tela_opcoes(self):
         print("-------REGISTRO DE DOAÇÃO--------")
@@ -22,12 +24,14 @@ class TelaRegistroDoacao():
     def pega_dados_registro_doacao(self):
         print("-------- DADOS REGISTRO DE DOAÇÃO ----------")
         cpf_doador = input("Cpf do doador: ")
-        numero_chip_animal = int(input("Numero do chip do animal a ser doado: "))
+        numero_chip_animal = int(
+            input("Numero do chip do animal a ser doado: "))
         motivo = input("Motivo doação: ")
         return {"cpf": cpf_doador, "numero_chip": numero_chip_animal, "motivo": motivo}
 
     def mostra_registro_doacao(self, dados_registro_doacao):
-        print("CÓDIGO DO REGISTRO DE DOAÇÃO: ", dados_registro_doacao["codigo_registro"])
+        print("CÓDIGO DO REGISTRO DE DOAÇÃO: ",
+              dados_registro_doacao["codigo_registro"])
         print("DATA DO REGISTRO DE DOAÇÃO: ", dados_registro_doacao["data"])
         print("NOME DO DOADOR: ", dados_registro_doacao["nome_doador"])
         print("MOTIVO DA DOAÇÃO: ", dados_registro_doacao["motivo"])
