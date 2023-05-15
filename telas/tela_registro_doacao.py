@@ -40,5 +40,13 @@ class TelaRegistroDoacao():
         registro = input("codigo do registro que deseja selecionar: ")
         return registro
 
+    def pega_datas_relatorio(self, text):
+        print(f'Digite a {text} do período:')
+        dia = input("Dia: ")
+        mes = input("Mês: ")
+        ano = input("Ano: ")
+        data = date(int(ano), int(mes), int(dia))
+        return data
+
     def mostra_mensagem(self, msg):
         print(msg)

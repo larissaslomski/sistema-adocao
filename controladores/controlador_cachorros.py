@@ -41,8 +41,7 @@ class ControladorCachorros:
             for cachorro in self.__cachorros:
                 self.__tela_cachorro.mostra_cachorro(
                     {"numero_chip": cachorro.num_chip, "nome": cachorro.nome, "raca": cachorro.raca, "tamanho": cachorro.tamanho, "historico": cachorro.listar_vacinas_historico()})
-                    # como listar historicos? apenas no controlador de historicos?
-                #controlador de cachorrs tem o controlador de sistemas para conseguirmos listar os historicos
+
         else:
             self.__tela_cachorro.mostra_mensagem(
                 "ERRO: Não existe nenhum cachorro cadastrado no Sistema.")

@@ -21,12 +21,14 @@ class ControladorSistema():
         self.__controlador_tipos_habitacao = ControladorTipoHabitacao(self)
         self.__controlador_registros_adocao = ControladorRegistrosAdocao(self)
         self.__controlador_registros_doacao = ControladorRegistrosDoacao(self)
-        self.__controlador_historicos_vacinacao = ControladorHistoricoVacinacao(self)
+        self.__controlador_historicos_vacinacao = ControladorHistoricoVacinacao(
+            self)
         self.__controlador_vacinas = ControladorVacinas(self)
 
     @property
     def controlador_vacinas(self):
         return self.__controlador_vacinas
+
     @property
     def controlador_adotantes(self):
         return self.__controlador_adotantes
@@ -46,6 +48,10 @@ class ControladorSistema():
     @property
     def controlador_tipos_habitacao(self):
         return self.__controlador_tipos_habitacao
+
+    @property
+    def controlador_registros_doacao(self):
+        return self.__controlador_registros_doacao
 
     def inicia_sistema(self):
         self.abre_tela()

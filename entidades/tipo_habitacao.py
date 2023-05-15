@@ -6,7 +6,7 @@ class TipoHabitacao:
             self.__tamanho_hab = tamanho_hab
 
     def __str__(self):
-        return f"Tipo: {self.__tipo_hab}, Tamanho: {self.__tamanho_hab}"
+        return f"{self.__tipo_hab} {self.__tamanho_hab}"
 
 
 @property
