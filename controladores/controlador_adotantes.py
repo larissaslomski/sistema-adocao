@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from entidades.adotante import Adotante
 from telas.tela_adotante import TelaAdotante
 
@@ -10,22 +8,6 @@ class ControladorAdotantes:
         self.__tela_adotante = TelaAdotante()
         self.__controlador_sistema = controlador_sistema
 
-    def verifica_maior_idade(self):
-        data_nascimento = self.__tela_adotante.pega_data_nascimento_adotante()
-        data_atual = datetime.now().date()
-        idade_minima = 18
-        try:
-            data_formatada = datetime.strptime(data_nascimento, "%d/%m/%Y").date()
-            diferenca_anos = data_atual.year - data_formatada.year
-            if (data_atual.month, data_atual.day) < (data_formatada.month, data_formatada.day):
-                diferenca_anos -= 1
-            if diferenca_anos >= idade_minima:
-                return True
-            else:
-                return False
-        except ValueError:
-            self.__tela_adotante.mostra_mensagem("Formato de data inválido. Utilize o formato dd/mm/aaaa.")
-
     def pega_adotante_por_cpf(self, cpf: int):
         for adotante in self.__adotantes:
             if (adotante.cpf == cpf):
@@ -34,6 +16,7 @@ class ControladorAdotantes:
 
     def incluir_adotante(self):
         dados_adotante = self.__tela_adotante.pega_dados_adotante()
+        data_nascimento = self.__tela_adotante.pega_data_nascimento_adotante()
         tipo_habitacao = self.__controlador_sistema.controlador_tipos_habitacao.incluir_tipo_habitacao()
         cpf_valido = self.pega_adotante_por_cpf(dados_adotante['cpf'])
         if cpf_valido is None:
@@ -43,18 +26,16 @@ class ControladorAdotantes:
                     tem_outros_animais = True
                 else:
                     tem_outros_animais = False
-
-                if self.verifica_maior_idade(data_nascimento):
-                    adotante = Adotante(
-                        dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"],
-                        dados_adotante["endereco"], tem_outros_animais, tipo_habitacao)
-                    self.__adotantes.append(adotante)
-                    self.__tela_adotante.mostra_mensagem(
-                        "Adotante cadastrado com sucesso no sistema")
-                else:
-                    self.__tela_adotante.mostra_mensagem(
-                        "ERRO: informações inválidas, digite novamente os dados:")
-                    self.__tela_adotante.pega_dados_adotante()  # nao seria necessario um while(?)
+                adotante = Adotante(
+                    dados_adotante["cpf"], dados_adotante["nome"], data_nascimento,
+                    dados_adotante["endereco"], tem_outros_animais, tipo_habitacao)
+                self.__adotantes.append(adotante)
+                self.__tela_adotante.mostra_mensagem(
+                    "Adotante cadastrado com sucesso no sistema")
+            else:
+                self.__tela_adotante.mostra_mensagem(
+                    "ERRO: informações inválidas, digite novamente os dados:")
+                self.__tela_adotante.pega_dados_adotante()  # nao seria necessario um while(?)
         else:
             self.__tela_adotante.mostra_mensagem(
                 "ERRO: o Adotante ja esta cadastrado no Sistema.")

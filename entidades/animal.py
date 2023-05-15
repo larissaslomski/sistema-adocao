@@ -3,7 +3,7 @@ import uuid
 
 
 class Animal(ABC):
-    #incluir historico vacinacao no init
+    # incluir historico vacinacao no init
     @abstractmethod
     def __init__(self, num_chip: int, nome: str, raca: str):
         self.__historicos_vacinacao = []
@@ -30,11 +30,6 @@ class Animal(ABC):
     def raca(self):
         return self.__raca
 
-    # @num_chip.setter
-    # def num_chip(self, num_chip):
-    #     if isinstance(num_chip, int):
-    #         self.__num_chip = num_chip
-
     @nome.setter
     def nome(self, nome):
         if isinstance(nome, str):
@@ -47,7 +42,7 @@ class Animal(ABC):
 
     @historicos_vacinacao.setter
     def historico_vacinacao(self, historico_vacinacao):
-            self.__historicos_vacinacao.append(historico_vacinacao)
+        self.__historicos_vacinacao.append(historico_vacinacao)
 
     def listar_vacinas_historico(self):
         lista_historico = []
