@@ -3,9 +3,8 @@ from telas.tela_tipo_habitacao import TelaTipoHabitacao
 
 
 class ControladorTipoHabitacao:
-    def __init__(self, controlador_sistema):
+    def __init__(self):
         self.__tela_tipo_habitacao = TelaTipoHabitacao()
-        self.__controlador_sistema = controlador_sistema
 
     def incluir_tipo_habitacao(self):
         while True:
@@ -27,6 +26,3 @@ class ControladorTipoHabitacao:
                 else:
                     tipo_habitacao = TipoHabitacao('apartamento', 'grande')
                 return tipo_habitacao
-
-    def retornar(self):
-        self.__controlador_sistema.abre_tela()

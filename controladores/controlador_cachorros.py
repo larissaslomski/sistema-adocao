@@ -21,7 +21,8 @@ class ControladorCachorros:
         #     dados_cachorro['num_chip'])
         # if num_chip_valido is None:
         numero_chip = uuid4().int
-        cachorro = Cachorro(numero_chip, dados_cachorro["nome"], dados_cachorro["raca"], dados_cachorro["tamanho"])
+        cachorro = Cachorro(
+            numero_chip, dados_cachorro["nome"], dados_cachorro["raca"], dados_cachorro["tamanho"])
         dados_cachorro["numero_chip"] = numero_chip
         self.__cachorros.append(cachorro)
         self.__tela_cachorro.mostra_mensagem(
@@ -36,8 +37,8 @@ class ControladorCachorros:
             for cachorro in self.__cachorros:
                 self.__tela_cachorro.mostra_cachorro(
                     {"numero_chip": cachorro.num_chip, "nome": cachorro.nome, "raca": cachorro.raca, "tamanho": cachorro.tamanho, "historico": cachorro.listar_vacinas_historico()})
-                    # como listar historicos? apenas no controlador de historicos?
-                #controlador de cachorrs tem o controlador de sistemas para conseguirmos listar os historicos
+                # como listar historicos? apenas no controlador de historicos?
+                # controlador de cachorrs tem o controlador de sistemas para conseguirmos listar os historicos
         else:
             self.__tela_cachorro.mostra_mensagem(
                 "ERRO: Não existe nenhum cachorro cadastrado no Sistema.")
@@ -68,13 +69,16 @@ class ControladorCachorros:
 
         if (cachorro is not None):
             self.__cachorros.remove(cachorro)
-            self.__tela_cachorro.mostra_mensagem(f"O cachorro de numero chip: {num_chip} foi excluido do sistema")
+            self.__tela_cachorro.mostra_mensagem(
+                f"O cachorro de numero chip: {num_chip} foi excluido do sistema")
             if len(self.__cachorros) == 0:
-                self.__tela_cachorro.mostra_mensagem("Não existe mais nenhum cachorro cadastrado no sistema")
+                self.__tela_cachorro.mostra_mensagem(
+                    "Não existe mais nenhum cachorro cadastrado no sistema")
             else:
                 self.__tela_cachorro.tela_opcoes()
         else:
-            self.__tela_cachorro.mostra_mensagem("ERRO: O Cachorro não existe.")
+            self.__tela_cachorro.mostra_mensagem(
+                "ERRO: O Cachorro não existe.")
             self.__tela_cachorro.tela_opcoes()
 
     def retornar(self):
