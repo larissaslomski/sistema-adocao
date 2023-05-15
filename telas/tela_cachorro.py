@@ -1,7 +1,6 @@
 class TelaCachorro():
     def tela_opcoes(self):
         print("-------CACHORRO --------")
-        print("Escolha a opcao")
         print("1 - Incluir cachorro")
         print("2 - Alterar cachorro")
         print("3 - Listar cachorros")
@@ -11,12 +10,19 @@ class TelaCachorro():
         opcao = int(input("Escolha a opcao: "))
         return opcao
 
+    def tamanho_cachorro(self):
+        print("------- TAMANHO CACHORRO --------")
+        print("P - Cachorro pequeno")
+        print("M - Cachorro médio")
+        print("G - Cachorro grande")
+        opcao = input("Escolha a opcao: ")
+        return opcao
+
     def pega_dados_cachorro(self):
         print("-------- DADOS CACHORRO ----------")
         nome = input("Nome: ")
         raca = input("Raça: ")
-        tamanho = input("Tamanho: ")
-        return {"nome": nome, "raca": raca, "tamanho": tamanho}
+        return {"nome": nome, "raca": raca}
 
     def mostra_cachorro(self, dados_cachorro):
 

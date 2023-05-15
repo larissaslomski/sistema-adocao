@@ -4,9 +4,9 @@ class TelaRegistroAdocao():
         print("-------REGISTRO DE ADOÇÃO--------")
         print("Escolha a opcao")
         print("1 - Incluir registro de adoção")
-        print("2 - Alterar registro de adoção")
-        print("3 - Listar registros de adoção")
-        print("4 - Excluir registro de adoção")
+        print("2 - Listar registros de adoção")
+        print("3 - Excluir registro de adoção")
+        print("4 - Alterar registro de adoção")
         print("0 - Retornar")
 
         opcao = int(input("Escolha a opcao: "))

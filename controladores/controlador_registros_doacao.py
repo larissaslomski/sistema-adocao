@@ -37,6 +37,7 @@ class ControladorRegistrosDoacao():
                 registro_doacao = RegistroDoacao(codigo_registro, data, cachorro, doador, dados_registro_doacao["motivo"])
                 self.__registros_doacao.append(registro_doacao)
                 self.__tela_registro_doacao.mostra_mensagem(f"Inclusão de registro de doação realizada com sucesso!")
+                a=1
             else:
                 self.__tela_registro_doacao.mostra_mensagem("Informações de doador ou chip animal invalidas, tente novamente.")
                 #fazer while verificação
@@ -85,9 +86,12 @@ class ControladorRegistrosDoacao():
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {1: self.incluir_registro_doacao(), 2: self.listar_registro_doacao(), 3: self.excluir_registro_doacao(), 4: self.alterar_registro_doacao(),
+        lista_opcoes = {1: self.incluir_registro_doacao, 2: self.alterar_registro_doacao,
+                        3: self.listar_registro_doacao, 4: self.excluir_registro_doacao,
                         0: self.retornar}
 
         continua = True
         while continua:
             lista_opcoes[self.__tela_registro_doacao.tela_opcoes()]()
+
+

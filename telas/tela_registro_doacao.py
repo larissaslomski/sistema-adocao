@@ -11,6 +11,7 @@ class TelaRegistroDoacao():
 
         opcao = int(input("Escolha a opcao: "))
         return opcao
+
     def seleciona_cachorro_ou_gato(self):
         print("Um cachorro um gato será doado?")
         print("1 - Cachorro")

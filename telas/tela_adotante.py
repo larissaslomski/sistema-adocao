@@ -11,14 +11,20 @@ class TelaAdotante():
         opcao = int(input("Escolha a opcao: "))
         return opcao
 
+    def pega_data_nascimento_adotante(self):
+        print("-------- DADOS NASCIMENTO DO ADOTANTE --------")
+        ano_nascimento = input("Ano de nascimento com quatro dígitos: ")
+        mes_nascimento = input("Mês de nascimento com dois dígitos: ")
+        dia_nascimento = input("Dia de nascimento com dois dígitos: ")
+        return ano_nascimento, dia_nascimento, mes_nascimento
+
     def pega_dados_adotante(self):
         print("-------- DADOS ADOTANTE --------")
         cpf = input("CPF: ")
         nome = input("Nome: ")
-        nascimento = input("Data de nascimento: ")
         endereco = input("Endereço: ")
         tem_outros_animais = input("Possui outros animais?(S/N) ")
-        return {"cpf": cpf, "nome": nome, "nascimento": nascimento, "endereco": endereco,
+        return {"cpf": cpf, "nome": nome, "endereco": endereco,
                 "tem_outros_animais": tem_outros_animais}
 
     def pega_dados_adotante_alt(self):

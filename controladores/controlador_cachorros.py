@@ -17,10 +17,15 @@ class ControladorCachorros:
 
     def incluir_cachorro(self):
         dados_cachorro = self.__tela_cachorro.pega_dados_cachorro()
-        # num_chip_valido = self.pega_cachorro_por_num_chip(
-        #     dados_cachorro['num_chip'])
-        # if num_chip_valido is None:
         numero_chip = uuid4().int
+        tamanho = self.__tela_cachorro.tamanho_cachorro()
+        while True:
+            if tamanho.upper() not in ('P', 'M', 'G'):
+                self.__tela_cachorro.mostra_mensagem("Informação inválida, selecione P, M ou G")
+                tamanho = self.__tela_cachorro.tamanho_cachorro()
+            else:
+                break
+        dados_cachorro["tamanho"] = tamanho.upper()
         cachorro = Cachorro(numero_chip, dados_cachorro["nome"], dados_cachorro["raca"], dados_cachorro["tamanho"])
         dados_cachorro["numero_chip"] = numero_chip
         self.__cachorros.append(cachorro)
@@ -50,12 +55,21 @@ class ControladorCachorros:
 
         if (cachorro is not None):
             novos_dados_cachorro = self.__tela_cachorro.pega_dados_cachorro()
+            tamanho = self.__tela_cachorro.tamanho_cachorro()
+            while True:
+                if tamanho.upper() not in ('P', 'M', 'G'):
+                    self.__tela_cachorro.mostra_mensagem("Informação inválida, selecione P, M ou G")
+                    tamanho = self.__tela_cachorro.tamanho_cachorro()
+                else:
+                    break
+            novos_dados_cachorro["tamanho"] = tamanho.upper()
             cachorro.nome = novos_dados_cachorro["nome"]
             cachorro.raca = novos_dados_cachorro["raca"]
             cachorro.tamanho = novos_dados_cachorro["tamanho"]
             # num_chip é fixo (?) resposta: vou considerar q sim
             # historico_vacinacao só pode ser alterado na sua tela (?)
-            self.listar_cachorros()
+            self.__tela_cachorro.mostra_mensagem("Dados do cachorro alterados com sucesso.")
+            # self.listar_cachorros()
         else:
             self.__tela_cachorro.mostra_mensagem(
                 "ERRO: O cachorro não existe.")

@@ -1,3 +1,5 @@
+import datetime
+
 from entidades.adotante import Adotante
 from telas.tela_adotante import TelaAdotante
 
@@ -25,6 +27,11 @@ class ControladorAdotantes:
                     tem_outros_animais = True
                 else:
                     tem_outros_animais = False
+                ano_nascimento, dia_nascimento, mes_nascimento = self.__tela_adotante.pega_data_nascimento_adotante()
+                a=1
+                data_nascimento = datetime.date(int(ano_nascimento), int(mes_nascimento), int(dia_nascimento))
+                data_atual = datetime.date.today()
+                teste = (data_atual - data_nascimento)
                 adotante = Adotante(
                     dados_adotante["cpf"], dados_adotante["nome"], dados_adotante["nascimento"],
                     dados_adotante["endereco"], tem_outros_animais, tipo_habitacao)
