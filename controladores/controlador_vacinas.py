@@ -3,9 +3,7 @@ from telas.tela_vacina import TelaVacina
 
 
 class ControladorVacinas():
-    def __init__(self, controlador_sistema):
-        self.__controlador_sistema = controlador_sistema
-        self.__vacinas = []
+    def __init__(self):
         self.__tela_vacina = TelaVacina()
 
     def incluir_vacina(self):
