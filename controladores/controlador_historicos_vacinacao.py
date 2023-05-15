@@ -26,13 +26,11 @@ class ControladorHistoricoVacinacao():
             else:
                 break
         if cachorro_ou_gato == 1:
-            self.__controlador_sistema.controlador_vacinas.incluir_vacina()
             self.__controlador_sistema.controlador_cachorros.listar_cachorros()
-            self.__controlador_sistema.controlador_vacinas.listar_vacina()
             dados_historico_vacinacao = self.__tela_historico_vacinacao.pega_dados_historico()
+            vacina = self.__controlador_sistema.controlador_vacinas.incluir_vacina()
             cachorro = self.__controlador_sistema.controlador_cachorros.pega_cachorro_por_num_chip(
                 dados_historico_vacinacao["numero_chip_animal"])
-            vacina = self.__controlador_sistema.controlador_vacinas.incluir_vacina()
             if cachorro is not None and vacina is not None:
                 data = date.today()
                 historico_vacinacao = HistoricoVacinacao(
@@ -42,12 +40,9 @@ class ControladorHistoricoVacinacao():
                 self.__tela_historico_vacinacao.mostra_mensagem(f"Não há nenhum cachorro cadastrado com numero chip: "
                                                                 f"{dados_historico_vacinacao['numero_chip_animal']} para vacinar")
         if cachorro_ou_gato == 2:
-            self.__controlador_sistema.controlador_vacinas.incluir_vacina()
             self.__controlador_sistema.controlador_gatos.listar_gatos()
-            self.__controlador_sistema.controlador_vacinas.listar_vacina()
             dados_historico_vacinacao = self.__tela_historico_vacinacao.pega_dados_historico()
-            vacina = self.__controlador_sistema.controlador_vacinas.pega_vacina_por_nome(
-                dados_historico_vacinacao["nome_vacina"])
+            vacina = self.__controlador_sistema.controlador_vacinas.incluir_vacina()
             gato = self.__controlador_sistema.controlador_gatos.pega_gato_por_num_chip(
                 dados_historico_vacinacao["numero_chip_animal"])
             if gato is not None and vacina is not None:

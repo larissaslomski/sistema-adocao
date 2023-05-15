@@ -20,15 +20,14 @@ class TelaHistoricoVacinacao():
 
     def pega_dados_historico(self):
         print("------- HISTÓRICO VACINAÇÃO --------")
-        numero_chip_animal = int(input("Digite o número do chip do animal vacinado: "))
-        nome_vacina = input("Digite o nome da vacina: ")
-        return {"numero_chip_animal": numero_chip_animal, "nome_vacina": nome_vacina}
+        numero_chip_animal = int(
+            input("Digite o número do chip do animal vacinado: "))
+        return {"numero_chip_animal": numero_chip_animal}
 
     def mostra_historico_vacinacao(self, dados_historico_vacinacao):
         print("DATA VACINACAO: ", dados_historico_vacinacao["data"])
         print("NOME DA VACINA: ", dados_historico_vacinacao["vacina"])
         print("\n")
-
 
     def mostra_mensagem(self, msg):
         print(msg)
