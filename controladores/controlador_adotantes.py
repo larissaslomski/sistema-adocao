@@ -48,7 +48,7 @@ class ControladorAdotantes:
                     {"cpf": adotante.cpf, "nome": adotante.nome, "nascimento": adotante.nascimento, "endereco": adotante.endereco, "tem_outros_animais": adotante.tem_outros_animais, "tipo_habitacao": adotante.tipo_habitacao})
         else:
             self.__tela_adotante.mostra_mensagem(
-                "ERRO: Não existe nenhum Adotante cadastrado no Sistema.")
+                "ATENÇÃO: não existe nenhum adotante cadastrado no Sistema.")
             self.__controlador_sistema.abre_tela()
 
     def alterar_adotante(self):

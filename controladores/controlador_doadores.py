@@ -35,7 +35,7 @@ class ControladorDoadores():
                      "endereco": doador.endereco})
         else:
             self.__tela_doador.mostra_mensagem(
-                "ERRO: Não existe nenhum adotante cadastrado no Sistema.")
+                "ATENÇÃO: não existe nenhum doador cadastrado no Sistema.")
             self.__controlador_sistema.abre_tela()
 
     def alterar_doador(self):

@@ -10,6 +10,10 @@ class ControladorRegistrosDoacao():
         self.__registros_doacao = []
         self.__tela_registro_doacao = TelaRegistroDoacao()
 
+    def verifica_animal_doado(self):
+        for registro_doacao in self.__registros_doacao:
+            if registro_doacao
+
     def pega_registro_doacao_por_codigo(self, codigo: int):
         for registro_doacao in self.__registros_doacao:
             if registro_doacao.codigo_registro == codigo:
@@ -32,6 +36,8 @@ class ControladorRegistrosDoacao():
             else:
                 break
         if cachorro_ou_gato == 1:
+            self.__controlador_sistema.controlador_cachorros.incluir_cachorro()
+            self.__controlador_sistema.controlador_doadores.incluir_doador()
             self.__controlador_sistema.controlador_cachorros.listar_cachorros()
             self.__controlador_sistema.controlador_doadores.listar_doadores()
             self.__tela_registro_doacao.mostra_mensagem(
@@ -43,6 +49,7 @@ class ControladorRegistrosDoacao():
                 dados_registro_doacao["numero_chip"])
             if doador is not None and cachorro is not None:
                 codigo_registro = uuid4().int
+
                 data = date.today()
                 registro_doacao = RegistroDoacao(
                     codigo_registro, data, cachorro, doador, dados_registro_doacao["motivo"])
@@ -53,10 +60,12 @@ class ControladorRegistrosDoacao():
                 self.__tela_registro_doacao.mostra_mensagem(
                     "Informações de doador ou chip animal invalidas, tente novamente.")
         elif cachorro_ou_gato == 2:
-            self.__tela_registro_doacao.mostra_mensagem(
-                "Precisamos do CPF do doador, o número do chip do gato e o motivo da doação:")
+            self.__controlador_sistema.controlador_gatos.incluir_gato()
+            self.__controlador_sistema.controlador_doadores.incluir_doador()
             self.__controlador_sistema.controlador_gatos.listar_gatos()
             self.__controlador_sistema.controlador_doadores.listar_doadores()
+            self.__tela_registro_doacao.mostra_mensagem(
+                "Precisamos do CPF do doador, o número do chip do gato e o motivo da doação:")
             dados_registro_doacao = self.__tela_registro_doacao.pega_dados_registro_doacao()
             motivo = dados_registro_doacao["motivo"]
             doador = self.__controlador_sistema.controlador_doadores.pegar_doador_por_cpf(
